@@ -35,7 +35,12 @@ const Title = styled.h2`
   font-size: 1.8rem;
   color: ${colors.tealMedium};
   margin-bottom: 16px;
-  text-align: center;
+`;
+
+const Message = styled.p`
+  font-size: 1rem;
+  color: ${colors.grayDark};
+  margin-bottom: 24px;
 `;
 
 const SessionTitle = styled.h3`
@@ -77,6 +82,13 @@ const Quest1 = () => {
       <PageWrapper>
         <Container>
           <Title>Questionário</Title>
+          <Message>
+            <strong>Parabéns por começar o questionário!</strong> Este bloco ajuda a entendermos seus padrões de estudo e foco ao longo do dia, para personalizar seu aprendizado.  
+            As perguntas se inspiram em pesquisas de neurociência aplicadas à educação.  
+            <br />
+            Quer responder de forma mais detalhada? <a href="#">Clique aqui</a>.
+          </Message>
+
           <SessionTitle>Bases Neurocientíficas</SessionTitle>
 
           {baseQuestions.map((q, index) => (

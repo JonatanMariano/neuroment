@@ -33,6 +33,12 @@ const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
+const Message = styled.p`
+  font-size: 1rem;
+  color: ${colors.grayDark};
+  margin-bottom: 24px;
+`;
+
 const SessionTitle = styled.h3`
   font-size: 1.2rem;
   color: ${colors.orangeVibrant};
@@ -67,6 +73,14 @@ const Quest4 = () => {
       <PageWrapper>
         <Container>
           <Title>Questionário</Title>
+          <Message>              
+            Agora vamos descobrir seu estilo de aprendizagem.  
+            Inspirado no <strong>VARK</strong> (<a href="https://vark-learn.com/the-vark-questionnaire/" target="_blank">Visual, Auditivo, Leitura/Escrita, Cinestésico</a>).  
+            <br />
+            Quer responder de forma detalhada? <a href="#">Clique aqui</a>.
+          </Message>
+
+
           <SessionTitle>4. Estilos de aprendizagem</SessionTitle>
 
           {estiloQuestoes.map((q, index) => {

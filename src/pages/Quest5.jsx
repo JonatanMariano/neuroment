@@ -36,6 +36,12 @@ const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
+const Message = styled.p`
+  font-size: 1rem;
+  color: ${colors.grayDark};
+  margin-bottom: 24px;
+`;
+
 const SessionTitle = styled.h3`
   font-size: 1.2rem;
   color: ${colors.orangeVibrant};
@@ -70,6 +76,15 @@ const Quest5 = () => {
       <PageWrapper>
         <Container>
           <Title>Questionário</Title>
+          <Message>
+            Uau, você chegou à última etapa! 🎯  
+            Aqui queremos conhecer suas dificuldades, obstáculos e motivações para estudar.  
+            Com isso, podemos oferecer recomendações ainda mais personalizadas e eficientes.  
+            <br />
+            Quer responder a versão detalhada? <a href="#">Clique aqui</a>.
+          </Message>
+
+
           <SessionTitle>5. Dificuldades e condições</SessionTitle>
 
           {dificuldadeQuestoes.map((q, index) => (

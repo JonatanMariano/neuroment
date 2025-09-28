@@ -14,6 +14,7 @@ import { generos } from "../data/listas.js";
 import { escolaridade } from "../data/listas.js";
 import { materias } from "../data/listas.js";
 import { idiomas } from "../data/listas.js";
+import Modal from "../components/ui/Modal.jsx"; // overlay de modal
 
 // Container que envolve toda a página
 const PageWrapper = styled.div`
@@ -86,6 +87,22 @@ const SessionGrid = styled.div`
   grid-template-columns: repeat(${props => props.cols || 1}, 1fr);
 `;
 
+//Botões internos do modal:
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+`;
+
+const NegativeButton = styled(Button)`
+  background-color: ${colors.grayDark};
+  color: white;
+  &:hover {
+    background-color: ${colors.grayMedium};
+  }
+`;
+
 const DadosPessoais = () => {
   const navigate = useNavigate();
 
@@ -104,6 +121,10 @@ const DadosPessoais = () => {
   const [education, setEducation] = useState("");
   const [subject, setSubject] = useState([]);
   const [idioms, setIdioms] = useState([]);
+
+  // Estados para modais
+  const [showModal, setShowModal] = useState(false);   // modal principal
+  const [showConfirm, setShowConfirm] = useState(false); // modal de confirmação do "pular"
 
   return (
     <Background theme="light">
@@ -232,13 +253,58 @@ const DadosPessoais = () => {
             <div></div>
           </SessionGrid>
 
-          {/* Botão prosseguir */}
+          {/* Botão Prosseguir */}
           <Button 
-            onClick={() => navigate("/questionario-1")} 
+            onClick={() => setShowModal(true)}
             style={{ marginTop: "24px", alignSelf: "center"}}
-          >
-            Prosseguir
+           >
+           Prosseguir
           </Button>
+
+          {/* Modal principal */}
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
+             <Title>Questionário Inicial</Title>
+             <Message>
+               Agora vamos fazer um questionário inicial básico para que você possa começar sua jornada de estudos livremente no aplicativo.  
+               Escolha uma das opções abaixo:
+             </Message>
+
+             <ButtonWrapper>
+                <Button onClick={() => {
+                 setShowModal(false); 
+                 navigate("/questionario-1"); // vai para o questionário
+                }}>
+                 Responder questionário
+                </Button>
+
+             <NegativeButton onClick={() => {
+              setShowConfirm(true); // abre modal de confirmação de pular
+              setShowModal(false);
+             }}>
+              Pular
+             </NegativeButton>
+             </ButtonWrapper>
+          </Modal>
+
+          {/* Modal de confirmação para pular */}
+          <Modal show={showConfirm} showClose={false}>
+            <Title>Confirmação</Title>
+            <Message>
+              Deseja mesmo pular? A personalização do seu aprendizado será menos precisa.  
+              O questionário é muito rápido!
+            </Message>
+
+            <ButtonWrapper>
+              <NegativeButton onClick={() => setShowConfirm(false)}>
+                Voltar e responder
+              </NegativeButton>
+
+              <Button onClick={() => navigate("/home")}>
+                Prosseguir mesmo assim
+              </Button>
+            </ButtonWrapper>
+          </Modal>
+          
         </DadosPessoaisContainer>
       </PageWrapper>
       <Footer />

@@ -22,7 +22,7 @@ function App() {
         <Route path="/first-access" element={<FirstAccess />} />
         <Route path="/confirm-email" element={<ConfirmEmail />} />
         <Route path="/confirm-success" element={<ConfirmSuccess />} />
-        <Route path="/dados-pessoais" element={<DadosPessoais />} />
+        <Route path="/dados-pessoais" element={<DadosPessoais />} />        
         <Route path="/questionario-1" element={<Quest1 />} />
         <Route path="/questionario-2" element={<Quest2 />} />
         <Route path="/questionario-3" element={<Quest3 />} />

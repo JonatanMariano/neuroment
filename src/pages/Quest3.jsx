@@ -33,6 +33,12 @@ const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
+const Message = styled.p`
+  font-size: 1rem;
+  color: ${colors.grayDark};
+  margin-bottom: 24px;
+`;
+
 const SessionTitle = styled.h3`
   font-size: 1.2rem;
   color: ${colors.orangeVibrant};
@@ -73,6 +79,14 @@ const Quest3 = () => {
       <PageWrapper>
         <Container>
           <Title>Questionário</Title>
+          <Message>
+            Estamos quase na metade. 👏              
+            Neste bloco, identificaremos suas <strong>inteligências predominantes</strong>, baseado na teoria de <a href="https://pt.wikipedia.org/wiki/Teoria_das_intelig%C3%AAncias_m%C3%BAltiplas" target="_blank">Howard Gardner</a>.  
+            Responda com sinceridade! 
+            <br />
+            <a href="#">Clique aqui</a> para responder uma versão detalhada.
+          </Message>
+
           <SessionTitle>3. Inteligências múltiplas</SessionTitle>
 
           <Grid>

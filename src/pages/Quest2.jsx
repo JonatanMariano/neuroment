@@ -33,7 +33,12 @@ const Title = styled.h2`
   font-size: 1.8rem;
   color: ${colors.tealMedium};
   margin-bottom: 16px;
-  text-align: center;
+`;
+
+const Message = styled.p`
+  font-size: 1rem;
+  color: ${colors.grayDark};
+  margin-bottom: 24px;
 `;
 
 const SessionTitle = styled.h3`
@@ -81,6 +86,14 @@ const Quest2 = () => {
       <PageWrapper>
         <Container>
           <Title>Questionário</Title>
+          <Message>
+            Excelente! Você completou a primeira parte. 🎉  
+            Agora vamos explorar sua personalidade: como você aprende, toma decisões e prefere organizar suas tarefas.  
+            As perguntas são inspiradas no <a href="https://www.16personalities.com/pt/teste-de-personalidade" target="_blank"><strong>teste MBTI</strong></a> das 16 personalidades.  
+            <br />
+            Quer aprofundar? <a href="#">Responder versão detalhada</a>.
+          </Message>
+
           <SessionTitle>Personalidade</SessionTitle>
 
           <Grid>
