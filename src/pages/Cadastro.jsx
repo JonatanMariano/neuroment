@@ -44,7 +44,6 @@ const LogoWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-// Container para Nome e Sobrenome lado a lado
 const NameRow = styled.div`
   display: flex;
   gap: 12px;
@@ -53,7 +52,7 @@ const NameRow = styled.div`
   margin-bottom: 6px;
 
   > div {
-    flex: 1; // Faz os inputs ocuparem a mesma largura
+    flex: 1;
   }
 `;
 
@@ -94,7 +93,6 @@ const LoginLinkTop = styled.div`
   margin-bottom: 8px;
   font-size: 14px;
   
-
   a {
     color: ${colors.link};
     text-decoration: none;
@@ -106,26 +104,70 @@ const LoginLinkTop = styled.div`
 
 const Cadastro = () => {
   const navigate = useNavigate();
-  const [nome, setNome] = useState("");
+
+  // Estados dos campos
+  const [name, setName] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const [termos, setTermos] = useState(false);
+  const [termosAceitos, setTermosAceitos] = useState(false);
 
-  const handleRegister = () => {
-    if (termos) {
-      navigate("/confirm-email");
+  // Função de cadastro
+  const handleRegister = async () => {
+    if (!name || !sobrenome || !email || !password || !confirmarSenha) {
+      alert("Preencha todos os campos!");
+      return;
+    }
+    if (password !== confirmarSenha) {
+      alert("As senhas não coincidem!");
+      return;
+    }
+    if (!termosAceitos) {
+      alert("Você precisa aceitar os termos!");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          sobrenome,
+          email,
+          password,
+          termos_aceitos: termosAceitos,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+       // exibe o código de confirmação para o usuário
+       alert(`Seu código de confirmação é: ${data.codigo_confirmacao}`);
+
+       // salva userId no localStorage para usar no ConfirmEmail.jsx
+       localStorage.setItem("userId", data.id);
+
+       navigate("/confirm-email");
+      } else {
+      alert(data.message || "Erro no cadastro.");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao conectar com o servidor.");
     }
   };
 
   return (
     <Background theme="light">
       <PageWrapper>
-        <RegisterContainer>   
-
+        <RegisterContainer>
           <LogoWrapper>
-            <Logo size="xsmall"/>
+            <Logo size="xsmall" />
           </LogoWrapper>
 
           <LoginLinkTop>
@@ -137,8 +179,8 @@ const Cadastro = () => {
               name="Nome"
               placeholder="Digite seu nome..."
               type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <InputField
               name="Sobrenome"
@@ -160,8 +202,8 @@ const Cadastro = () => {
           <InputFieldPassword
             name="Senha"
             placeholder="Digite sua senha..."
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <InputFieldPassword
@@ -174,16 +216,15 @@ const Cadastro = () => {
           <TermsRow>
             <input
               type="checkbox"
-              checked={termos}
-              onChange={() => setTermos(!termos)}
+              checked={termosAceitos}
+              onChange={(e) => setTermosAceitos(e.target.checked)}
             />
-              Li e concordo com os 
-              <Link to="/terms">termos de uso</Link>
+            Li e concordo com os <Link to="/terms">termos de uso</Link>
           </TermsRow>
 
           <Button
             onClick={handleRegister}
-            disabled={!termos}
+            disabled={!termosAceitos}
             style={{ marginTop: "8px", alignSelf: "center" }}
           >
             Registrar

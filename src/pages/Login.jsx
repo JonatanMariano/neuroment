@@ -103,8 +103,26 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-  const handleLogin = () => {
-    navigate("/home");
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        console.log("Login bem-sucedido!");
+        navigate("/planos"); // Redireciona para a página de planos
+        alert(data.message || "Erro no login");
+      }
+    } catch (error) {
+      console.error("Erro ao tentar login:", error);
+      alert("Não foi possível conectar ao servidor.");
+    }
   };
 
   return (
@@ -112,9 +130,8 @@ const Login = () => {
       <PageWrapper>
         <LoginContainer>
           <LogoWrapper>
-            <Logo size = "xsmall"/>
-            <AppName>
-            </AppName>
+            <Logo size="xsmall" />
+            <AppName></AppName>
           </LogoWrapper>
 
           <InputField
@@ -125,12 +142,12 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <InputFieldPassword             
-            name="Senha" 
-            placeholder="Digite sua senha..." 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
+          <InputFieldPassword
+            name="Senha"
+            placeholder="Digite sua senha..."
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           {/* Lembrar-me e Esqueci senha na mesma linha */}
@@ -153,7 +170,7 @@ const Login = () => {
             onClick={handleLogin}
             style={{ marginTop: "24px", alignSelf: "center" }}
           >
-            Logar
+            Entrar
           </Button>
 
           {/* Botões sociais */}

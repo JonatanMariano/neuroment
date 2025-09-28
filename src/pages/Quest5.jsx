@@ -121,7 +121,7 @@ const Quest5 = () => {
           </QuestionsGrid>
 
           <Button 
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/planos")}
             style={{ marginTop: "24px", alignSelf: "center"}}
           >
             Finalizar

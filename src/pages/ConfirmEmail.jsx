@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Background from "../components/globals/Background.jsx";
 import Footer from "../components/globals/Footer.jsx";
-import InputField from "../components/ui/InputField.jsx";
 import Button from "../components/ui/Button.jsx";
 import Logo from "../components/globals/Logo.jsx";
 import styled from "styled-components";
@@ -43,11 +42,11 @@ const ConfirmTitle = styled.h1`
 `;
 
 const ConfirmGreen = styled.span`
-  color: ${colors.tealLight}; // verde água
+  color: ${colors.tealLight};
 `;
 
 const ConfirmOrange = styled.span`
-  color: ${colors.orangeAccent}; // laranja
+  color: ${colors.orangeAccent};
 `;
 
 // Mensagem principal
@@ -101,26 +100,52 @@ const ConfirmEmail = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState(["", "", "", "", "", ""]);
 
+  // Agora pega dados reais do localStorage
+  const userId = localStorage.getItem("userId");
+
   const handleChange = (e, idx) => {
-    const val = e.target.value.replace(/[^0-9]/g, ""); // aceita apenas números
+    const val = e.target.value.replace(/[^0-9]/g, "");
     if (val.length > 1) return;
     const newCode = [...code];
     newCode[idx] = val;
     setCode(newCode);
 
-    // Avança automaticamente para o próximo input
     if (val && idx < 5) {
       const next = document.getElementById(`code-${idx + 1}`);
       if (next) next.focus();
     }
   };
 
-  const handleConfirm = () => {
-    // só permite avançar se todos os 6 dígitos forem preenchidos
-    if (code.every((d) => d !== "")) {
+  const handleConfirmacao = async () => {
+  if (code.some((d) => d === "")) {
+    alert("Digite todos os dígitos do código.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/auth/confirm-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId,
+        code: code.join("") // junta os 6 dígitos
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
       navigate("/confirm-success");
+    } else {
+      alert(data.message || "Código incorreto. Tente novamente.");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao conectar com o servidor.");
+  }
+};
+
 
   return (
     <Background theme="light">
@@ -133,7 +158,7 @@ const ConfirmEmail = () => {
           </ConfirmTitle>
 
           <Message>
-            Olá <b>Nome do Usuário</b>,<br/>
+            Olá <b>Usuário</b>,<br/>
             Enviamos um e-mail para <b>seuemail@exemplo.com</b> com um código de 6 dígitos. <br/>
             Por favor, confirme o código abaixo.
           </Message>
@@ -152,7 +177,7 @@ const ConfirmEmail = () => {
           </CodeRow>
 
           <Button
-            onClick={handleConfirm}
+            onClick={handleConfirmacao}
             disabled={code.some((d) => d === "")}
             style={{ marginTop: "8px", alignSelf: "center" }}
           >
@@ -163,7 +188,6 @@ const ConfirmEmail = () => {
             <Link to="#">Reenviar código</Link>
             <Link to="/cadastro">Trocar de conta</Link>
           </LinksRow>
-
 
         </ConfirmContainer>
       </PageWrapper>

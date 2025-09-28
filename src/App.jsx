@@ -11,6 +11,7 @@ import Quest2 from "./pages/Quest2.jsx";
 import Quest3 from "./pages/Quest3.jsx";  
 import Quest4 from "./pages/Quest4.jsx";  
 import Quest5 from "./pages/Quest5.jsx";
+import Planos from "./pages/Planos.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/questionario-3" element={<Quest3 />} />
         <Route path="/questionario-4" element={<Quest4 />} />
         <Route path="/questionario-5" element={<Quest5 />} />
+        <Route path="/planos" element={<Planos/>} />
       </Routes>
     </Router>
   );
