@@ -85,7 +85,7 @@ const Quest2 = () => {
     <Background theme="light">
       <PageWrapper>
         <Container>
-          <Title>Questionário</Title>
+          <Title>Questionário 2/5</Title>
           <Message>
             Excelente! Você completou a primeira parte. 🎉  
             Agora vamos explorar sua personalidade: como você aprende, toma decisões e prefere organizar suas tarefas.  

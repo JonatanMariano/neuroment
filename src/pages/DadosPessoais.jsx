@@ -258,7 +258,7 @@ const DadosPessoais = () => {
             onClick={() => setShowModal(true)}
             style={{ marginTop: "24px", alignSelf: "center"}}
            >
-           Prosseguir
+           Salvar e Prosseguir
           </Button>
 
           {/* Modal principal */}
@@ -295,13 +295,13 @@ const DadosPessoais = () => {
             </Message>
 
             <ButtonWrapper>
-              <NegativeButton onClick={() => setShowConfirm(false)}>
-                Voltar e responder
+              <NegativeButton onClick={() => navigate("/home")}>
+                Prosseguir mesmo assim
               </NegativeButton>
 
-              <Button onClick={() => navigate("/home")}>
-                Prosseguir mesmo assim
-              </Button>
+              <Button onClick={() => setShowConfirm(false)}>
+                Voltar e responder
+              </Button>              
             </ButtonWrapper>
           </Modal>
           

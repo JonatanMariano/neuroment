@@ -11,7 +11,6 @@ import CheckBoxGroup from "../components/ui/CheckBoxGroup.jsx";
 import InputHours from "../components/ui/InputHours.jsx";
 import questions from "../data/questions.js"; 
 
-
 // ===== Estilos =====
 const PageWrapper = styled.div`
   display: flex;
@@ -27,7 +26,7 @@ const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   margin-bottom: 40px;
 `;
 
@@ -51,11 +50,17 @@ const SessionTitle = styled.h3`
   margin-bottom: 20px;
 `;
 
+const QuestionsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+`;
+
 const QuestionWrapper = styled.div`
-  margin-bottom: 20px;
   background: linear-gradient(135deg, ${colors.white}, ${colors.grayLight});
   padding: 16px;
   border-radius: 6px;
+  position: relative;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.2),
               0 2px 6px rgba(0,0,0,0.1);
 `;
@@ -81,7 +86,7 @@ const Quest1 = () => {
     <Background theme="light">
       <PageWrapper>
         <Container>
-          <Title>Questionário</Title>
+          <Title>Questionário 1/5</Title>
           <Message>
             <strong>Parabéns por começar o questionário!</strong> Este bloco ajuda a entendermos seus padrões de estudo e foco ao longo do dia, para personalizar seu aprendizado.  
             As perguntas se inspiram em pesquisas de neurociência aplicadas à educação.  
@@ -91,39 +96,57 @@ const Quest1 = () => {
 
           <SessionTitle>Bases Neurocientíficas</SessionTitle>
 
-          {baseQuestions.map((q, index) => (
-            <QuestionWrapper key={q.id}>
-              <QuestionText>   
+          <QuestionsGrid>
+            {baseQuestions.map((q, index) => (
+              <QuestionWrapper key={q.id}>
+                <QuestionText>   
                   <p><strong>{index + 1}.</strong> {q.texto}</p>
-              </QuestionText> 
+                </QuestionText> 
 
-              {q.tipo === "RadioGroup" && (
-                <RadioGroup
-                  options={q.opcoes}
-                  value={answers[q.id] || ""}
-                  onChange={(val) => handleAnswer(q.id, val)}
-                />
-              )}
+                {q.tipo === "RadioGroup" && (
+                  <RadioGroup
+                    options={q.opcoes}
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />
+                )}
 
-              {q.tipo === "CheckBoxGroup" && (
-                <CheckBoxGroup
-                  options={q.opcoes}
-                  value={answers[q.id] || []}
-                  onChange={(val) => handleAnswer(q.id, val)}
-                  multiple={true}
-                />
-              )}
+                {q.tipo === "CheckBoxGroup" && (
+                  <CheckBoxGroup
+                    options={q.opcoes}
+                    value={answers[q.id] || []}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                    multiple={true}
+                  />
+                )}
 
-              {q.tipo === "inputHours" && (
-                <InputHours
-                  value={answers[q.id] || ""}
-                  onChange={(val) => handleAnswer(q.id, val)}
-                />
-              )}
-            </QuestionWrapper>
-          ))}
+                {q.tipo === "inputHours" && (
+                  <>
+                  <InputHours
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />  
+                  <img
+                    src = "/images/estudanteIA-2.png"
+                    alt = "Estudante lendo livro seguinda as estratégias do NeuroMent"
+                    style = {{ 
+                      position: "absolute",
+                      bottom: "8px",
+                      right: "8px",
+                      width: "350px",  // tamanho pequeno
+                      height: "auto",
+                      opacity: 0.9,
+                      pointerEvents: "none" }}                    
+                  />  
+                  </>              
+                )}
+              </QuestionWrapper>
+            ))}
+          </QuestionsGrid>
 
-          <Button onClick={() => navigate("/questionario-2")}>Prosseguir</Button>
+          <Button onClick={() => navigate("/questionario-2")} style={{ marginTop: "24px" }}>
+            Prosseguir
+          </Button>
         </Container>        
       </PageWrapper>
       <Footer />
@@ -132,3 +155,4 @@ const Quest1 = () => {
 };
 
 export default Quest1;
+

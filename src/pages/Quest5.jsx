@@ -26,7 +26,7 @@ const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
   margin-bottom: 40px;
 `;
 
@@ -50,8 +50,13 @@ const SessionTitle = styled.h3`
   padding-bottom: 4px;
 `;
 
+const QuestionsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+`;
+
 const QuestionWrapper = styled.div`
-  margin-bottom: 20px;
   background: linear-gradient(135deg, ${colors.white}, ${colors.grayLight});
   padding: 16px;
   border-radius: 6px;
@@ -75,7 +80,7 @@ const Quest5 = () => {
     <Background theme="light">
       <PageWrapper>
         <Container>
-          <Title>Questionário</Title>
+          <Title>Questionário 5/5</Title>
           <Message>
             Uau, você chegou à última etapa! 🎯  
             Aqui queremos conhecer suas dificuldades, obstáculos e motivações para estudar.  
@@ -84,35 +89,36 @@ const Quest5 = () => {
             Quer responder a versão detalhada? <a href="#">Clique aqui</a>.
           </Message>
 
-
           <SessionTitle>5. Dificuldades e condições</SessionTitle>
 
-          {dificuldadeQuestoes.map((q, index) => (
-            <QuestionWrapper key={q.id}>
-              <QuestionText>
-                <p><strong>{index + 1}.</strong> {q.texto}</p>
-              </QuestionText>
+          <QuestionsGrid>
+            {dificuldadeQuestoes.map((q, index) => (
+              <QuestionWrapper key={q.id}>
+                <QuestionText>
+                  <p><strong>{index + 1}.</strong> {q.texto}</p>
+                </QuestionText>
 
-              {q.tipo === "LikertScale" && (
-                <LikertScale name={q.id} />
-              )}
+                {q.tipo === "LikertScale" && (
+                  <LikertScale name={q.id} />
+                )}                               
 
-              {q.tipo === "RadioGroup" && (
-                <RadioGroup name={q.id} options={q.opcoes} />
-              )}
+                {q.tipo === "RadioGroup" && (
+                  <RadioGroup name={q.id} options={q.opcoes} />
+                )}
 
-              {q.tipo === "inputField" && (
-                <InputField name={q.id} placeholder="Digite sua resposta..." />
-              )}
+                {q.tipo === "inputField" && (
+                  <InputField name={q.id} placeholder="Digite sua resposta..." />
+                )}
 
-              {q.tipo === "CheckBoxGroup+InputField" && (
-                <div>
-                  <CheckBoxGroup name={q.id} options={q.opcoes} />
-                  <InputField name={`${q.id}_outro`} placeholder="Especifique, se necessário..." />
-                </div>
-              )}
-            </QuestionWrapper>
-          ))}
+                {q.tipo === "CheckBoxGroup+InputField" && (
+                  <div>
+                    <CheckBoxGroup name={q.id} options={q.opcoes} />
+                    <InputField name={`${q.id}_outro`} placeholder="Especifique, se necessário..." />
+                  </div>
+                )}
+              </QuestionWrapper>
+            ))}
+          </QuestionsGrid>
 
           <Button 
             onClick={() => navigate("/home")}

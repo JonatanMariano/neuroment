@@ -78,7 +78,7 @@ const Quest3 = () => {
     <Background theme="light">
       <PageWrapper>
         <Container>
-          <Title>Questionário</Title>
+          <Title>Questionário 3/5</Title>
           <Message>
             Estamos quase na metade. 👏              
             Neste bloco, identificaremos suas <strong>inteligências predominantes</strong>, baseado na teoria de <a href="https://pt.wikipedia.org/wiki/Teoria_das_intelig%C3%AAncias_m%C3%BAltiplas" target="_blank">Howard Gardner</a>.  
