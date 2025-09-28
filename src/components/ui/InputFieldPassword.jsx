@@ -12,7 +12,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 4px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -58,33 +59,33 @@ const ToggleButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: none; /* remove contorno ao focar */
+  outline: none;
   
   &:focus {
-    outline: none; /* remove contorno do teclado */
+    outline: none;
   }
 
   img {
     width: 20px;
     height: 20px;
     display: block;
-    pointer-events: none; /* garante que o clique fique no botão, não na imagem */
+    pointer-events: none;
   }
 `;
 
-const InputFieldPassword = ({ name, placeholder, ...props }) => {
+const InputFieldPassword = ({ name, placeholder, theme = "light", ...props }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePassword = () => setShowPassword((prev) => !prev);
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <InputWrapper>
         <Input
           placeholder={placeholder}
-          {...props}   // primeiro aplica as props
-          type={showPassword ? "text" : "password"}  // sobrescreve type se existir
+          {...props}
+          type={showPassword ? "text" : "password"}
         />
 
         <ToggleButton type="button" onClick={togglePassword}>

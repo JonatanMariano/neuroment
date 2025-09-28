@@ -13,7 +13,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 6px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -29,25 +30,57 @@ const OptionLabel = styled.label`
   padding: 10px 12px;
   border-radius: 6px;
   border: 2px solid ${colors.tealDark};
-  background-color: ${colors.white};
-  color: ${colors.grayDark};
-  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
+  background-color: ${({ checked, themeMode }) =>
+    checked
+      ? themeMode === "dark"
+        ? colors.tealMedium
+        : colors.tealDark
+      : colors.white};
+
+  color: ${({ checked, themeMode }) =>
+    checked
+      ? themeMode === "dark"
+        ? colors.white
+        : colors.orangeVibrant
+      : colors.grayDark};
+
   &:hover {
-    box-shadow: 0 0 8px ${colors.tealLight};
     border-color: ${colors.tealLight};
+    box-shadow: 0 0 8px ${colors.tealLight};
+
+    ${({ checked }) =>
+      !checked &&
+      `
+        background-color: ${colors.mint};
+        color: ${colors.white};
+      `}
   }
 
   input {
     margin-right: 10px;
-    accent-color: ${colors.tealDark}; /* cor do check */
+    transform: scale(1.2); /* checkbox maior */
     cursor: pointer;
+
+    /* cor do check segue a cor do texto */
+    accent-color: ${({ checked, themeMode }) =>
+      checked
+        ? themeMode === "dark"
+          ? colors.white
+          : colors.orangeVibrant
+        : colors.tealDark};
   }
 `;
 
-const CheckBoxGroup = ({ name, options = [], values = [], onChange }) => {
+const CheckBoxGroup = ({
+  name,
+  options = [],
+  values = [],
+  onChange,
+  theme = "light",
+}) => {
   const handleToggle = (value) => {
     if (values.includes(value)) {
       onChange(values.filter((v) => v !== value)); // remove
@@ -58,10 +91,14 @@ const CheckBoxGroup = ({ name, options = [], values = [], onChange }) => {
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <Options>
         {options.map((option, index) => (
-          <OptionLabel key={index}>
+          <OptionLabel
+            key={index}
+            checked={values.includes(option)}
+            themeMode={theme}
+          >
             <input
               type="checkbox"
               name={name}
@@ -78,3 +115,4 @@ const CheckBoxGroup = ({ name, options = [], values = [], onChange }) => {
 };
 
 export default CheckBoxGroup;
+

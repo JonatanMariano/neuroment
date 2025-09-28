@@ -1,5 +1,4 @@
-// src/components/ui/InputHours.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors.js";
 
@@ -13,7 +12,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 4px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -23,9 +23,10 @@ const TimeWrapper = styled.div`
 `;
 
 const TimeInput = styled.input`
-  width: 60px;
-  padding: 14px 12px;
-  border-radius: 6px;
+  width: 40px;
+  height: 45px;
+  padding: 0;
+  border-radius: 4px;
   border: 2px solid ${colors.tealDark};
   outline: none;
   font-size: 1rem;
@@ -50,18 +51,22 @@ const TimeInput = styled.input`
 `;
 
 const Separator = styled.span`
-  margin: 0 8px;
+  margin: 0 4px;
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 1.2rem;
-  color: ${colors.tealDark};
 `;
 
-const InputHours = ({ name, onChange }) => {
+const InputHours = ({ name, onChange, theme = "light" }) => {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
 
+  const hourRef = useRef(null);
+  const minuteRef = useRef(null);
+
   const handleScroll = (e, type) => {
-    e.preventDefault();
-    const delta = e.deltaY < 0 ? 1 : -1;
+    e.preventDefault(); // agora funciona
+    const delta = e.deltaY > 0 ? -1 : 1;
 
     if (type === "hours") {
       setHours((prev) => {
@@ -82,6 +87,19 @@ const InputHours = ({ name, onChange }) => {
     }
   };
 
+  // hook para registrar o wheel como { passive: false }
+  useEffect(() => {
+    const h = hourRef.current;
+    const m = minuteRef.current;
+    if (h) h.addEventListener("wheel", (e) => handleScroll(e, "hours"), { passive: false });
+    if (m) m.addEventListener("wheel", (e) => handleScroll(e, "minutes"), { passive: false });
+
+    return () => {
+      if (h) h.removeEventListener("wheel", (e) => handleScroll(e, "hours"));
+      if (m) m.removeEventListener("wheel", (e) => handleScroll(e, "minutes"));
+    };
+  }, [hours, minutes]);
+
   const handleInputChange = (e, type) => {
     const value = e.target.value.replace(/\D/g, "");
     if (type === "hours") {
@@ -97,22 +115,22 @@ const InputHours = ({ name, onChange }) => {
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <TimeWrapper>
         <TimeInput
+          ref={hourRef}
           type="text"
           value={hours}
           placeholder="HH"
           onChange={(e) => handleInputChange(e, "hours")}
-          onWheel={(e) => handleScroll(e, "hours")}
         />
-        <Separator>:</Separator>
+        <Separator themeMode={theme}>:</Separator>
         <TimeInput
+          ref={minuteRef}
           type="text"
           value={minutes}
           placeholder="MM"
           onChange={(e) => handleInputChange(e, "minutes")}
-          onWheel={(e) => handleScroll(e, "minutes")}
         />
       </TimeWrapper>
     </Wrapper>

@@ -1,5 +1,5 @@
 // src/components/ui/InputField.jsx
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors.js";
 
@@ -12,8 +12,9 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
-  margin-bottom: 4px; /* agora o label fica acima do input */
-  color: ${colors.tealDark};
+  margin-bottom: 4px;
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -42,10 +43,10 @@ const Input = styled.input`
   }
 `;
 
-const InputField = ({ name, placeholder, ...props }) => {
+const InputField = ({ name, placeholder, theme = "light", ...props }) => {
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <Input placeholder={placeholder} {...props} />
     </Wrapper>
   );

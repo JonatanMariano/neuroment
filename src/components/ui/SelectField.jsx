@@ -14,7 +14,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 4px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -71,7 +72,7 @@ const OptionItem = styled.li`
   }
 `;
 
-function SelectField({ name, placeholder, options = [], value, onChange }) {
+function SelectField({ name, placeholder, options = [], value, onChange, theme = "light" }) {
   const [open, setOpen] = useState(false);
 
   const handleSelect = (option) => {
@@ -81,7 +82,7 @@ function SelectField({ name, placeholder, options = [], value, onChange }) {
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <SelectBox onClick={() => setOpen(!open)}>
         {value || placeholder}
       </SelectBox>

@@ -156,7 +156,7 @@ const DadosPessoais = () => {
                 placeholder="Ex.: Brasileiro(a)"
               />
               <div></div>
-              <DateInput
+              <DateInput                
                 name="*Data de Nascimento"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
@@ -183,7 +183,7 @@ const DadosPessoais = () => {
               />
 
               {/* Linha 3 */}
-              <SelectField
+              <SelectField                
                 name="*Identidade de gênero"
                 placeholder="Escolha uma opção"
                 options={generos}
@@ -213,7 +213,7 @@ const DadosPessoais = () => {
               />
           </SessionGrid>   
           <SessionGrid cols={2}> 
-            <TagInputField
+            <TagInputField              
               name="Matérias favoritas"
               placeholder="Máximo 3 matérias"
               value={subject}
@@ -221,7 +221,7 @@ const DadosPessoais = () => {
               onChange={setSubject}
               options={materias}
             />
-            <TagInputField
+            <TagInputField              
               name="Idiomas"
               placeholder= "Idiomas que você entende ou fala"
               value={idioms}
@@ -234,7 +234,7 @@ const DadosPessoais = () => {
 
           {/* Botão prosseguir */}
           <Button 
-            onClick={() => navigate("/home")} 
+            onClick={() => navigate("/questionario-1")} 
             style={{ marginTop: "24px", alignSelf: "center"}}
           >
             Prosseguir

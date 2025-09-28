@@ -63,27 +63,27 @@ const Home = () => {
   return (
     <Background theme="light">
       <HomeContent>
-        <InputHours
+        <InputHours          
           name="Teste InputHours"
           value={inputHours}
           onChange={setInputHours}
         />
 
-        <RadioGroup
+        <RadioGroup          
           name="Teste RadioGroup"
           value={radioValue}
           onChange={setRadioValue}
           options={["Opção 1", "Opção 2", "Opção 3"]}
         />
 
-        <CheckBoxGroup
+        <CheckBoxGroup          
           name="Teste CheckBoxGroup"
           values={checkValues}
           onChange={setCheckValues}
           options={["Item A", "Item B", "Item C"]}
         />
 
-        <LikertScale
+        <LikertScale          
           name="Teste LikertScale"
           value={likertValue}
           onChange={setLikertValue}

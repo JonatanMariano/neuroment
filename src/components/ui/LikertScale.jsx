@@ -19,7 +19,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 6px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -88,10 +89,11 @@ const LikertScale = ({
   maxLabel = "Bom",
   minColor = defaultColors.minColor,
   maxColor = defaultColors.maxColor,
+  theme = "light",
 }) => {
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <SliderWrapper>
         <SliderInput
           type="range"

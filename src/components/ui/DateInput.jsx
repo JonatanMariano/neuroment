@@ -16,13 +16,14 @@ const Wrapper = styled.div`
 // Label
 const Label = styled.label`
   margin-bottom: 4px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
 // Input de data
 const Input = styled.input`
-  padding: 14px 12px; /* sem padding extra, o ícone nativo já ocupa espaço */
+  padding: 14px 12px;
   border-radius: 6px;
   border: 2px solid ${colors.tealDark};
   outline: none;
@@ -45,7 +46,6 @@ const Input = styled.input`
     box-shadow: 0 0 8px ${colors.tealLight};
   }
 
-  /* Ícone do calendário no Chrome, Edge e Safari */
   &::-webkit-calendar-picker-indicator {
     background: url("/icons/calendar.png") no-repeat center;
     background-size: 20px 20px;
@@ -53,7 +53,6 @@ const Input = styled.input`
     opacity: 1;
   }
 
-  /* Ícone do calendário no Firefox */
   &::-moz-calendar-picker-indicator {
     background: url("/icons/calendar.png") no-repeat center;
     background-size: 20px 20px;
@@ -61,12 +60,17 @@ const Input = styled.input`
   }
 `;
 
-const DateInput = ({ name = "Data", placeholder = "dd/mm/aaaa", ...props }) => {
+const DateInput = ({
+  name = "Data",
+  placeholder = "dd/mm/aaaa",
+  theme = "light",
+  ...props
+}) => {
   const [value, setValue] = useState("");
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <Input
         type="date"
         placeholder={value ? "" : placeholder}
@@ -79,5 +83,3 @@ const DateInput = ({ name = "Data", placeholder = "dd/mm/aaaa", ...props }) => {
 };
 
 export default DateInput;
-
-

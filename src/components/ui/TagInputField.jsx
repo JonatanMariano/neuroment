@@ -14,9 +14,11 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 4px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
+
 
 const InputArea = styled.div`
   display: flex;
@@ -110,10 +112,12 @@ const TagInputField = ({
   onChange,
   maxTags,
   options = [],
+  theme = "light",
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
+
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -157,7 +161,7 @@ const TagInputField = ({
 
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <InputArea onClick={() => setOpen(true)}>
         {value.map((tag, idx) => (
           <Tag key={idx}>

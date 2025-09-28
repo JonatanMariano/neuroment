@@ -13,7 +13,8 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   margin-bottom: 6px;
-  color: ${colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.white : colors.tealDark};
   font-size: 0.85rem;
 `;
 
@@ -26,34 +27,55 @@ const Options = styled.div`
 const OptionLabel = styled.label`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 10px 12px;
   border-radius: 6px;
   border: 2px solid ${colors.tealDark};
-  background-color: ${colors.white};
-  color: ${colors.grayDark};
-  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
+  background-color: ${({ checked, themeMode }) =>
+    checked
+      ? themeMode === "dark"
+        ? colors.tealMedium
+        : colors.tealDark
+      : colors.white};
+
+  color: ${({ checked, themeMode }) =>
+    checked
+      ? themeMode === "dark"
+        ? colors.white
+        : colors.orangeVibrant
+      : colors.grayDark};
+
   &:hover {
-    box-shadow: 0 0 8px ${colors.tealLight};
     border-color: ${colors.tealLight};
+    box-shadow: 0 0 8px ${colors.tealLight};
+
+    ${({ checked }) =>
+      !checked &&
+      `
+        background-color: ${colors.mint};
+        color: ${colors.white};
+      `}
   }
 
   input {
-    margin-right: 10px;
-    accent-color: ${colors.tealDark}; /* cor da bolinha */
-    cursor: pointer;
+    display: none;
   }
 `;
 
-const RadioGroup = ({ name, options = [], value, onChange }) => {
+const RadioGroup = ({ name, options = [], value, onChange, theme = "light" }) => {
   return (
     <Wrapper>
-      {name && <Label>{name}</Label>}
+      {name && <Label themeMode={theme}>{name}</Label>}
       <Options>
         {options.map((option, index) => (
-          <OptionLabel key={index}>
+          <OptionLabel
+            key={index}
+            checked={value === option}
+            themeMode={theme}
+           >
             <input
               type="radio"
               name={name}
@@ -63,7 +85,7 @@ const RadioGroup = ({ name, options = [], value, onChange }) => {
             />
             {option}
           </OptionLabel>
-        ))}
+          ))}
       </Options>
     </Wrapper>
   );

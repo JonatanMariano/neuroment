@@ -125,7 +125,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <InputFieldPassword 
+          <InputFieldPassword             
             name="Senha" 
             placeholder="Digite sua senha..." 
             type="password" 
