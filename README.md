@@ -1,4 +1,29 @@
-# NeuroMent — Instruções para Rodar Localmente
+# NeuroMent
+
+## Instruções para testar localmente ou web
+
+### Sumário
+1. [Testar Web](#testar-web)
+2. [Baixar e testar localmente](#baixar-e-testar-localmente)
+
+---
+
+## Testar Web
+
+Você não precisa baixar nada para testar o NeuroMent! Basta abrir o link do frontend no Vercel, que já está integrado ao backend no Render.  
+
+**Passos:**
+1. Acesse o frontend: [https://neuroment.vercel.app](https://neuroment.vercel.app)  
+2. Faça cadastro de teste usando qualquer e-mail e senha.  
+3. Faça login.  
+4. Navegue pelas funcionalidades do app. Todas as requisições estão conectadas ao backend hospedado no Render ([https://neuroment.onrender.com](https://neuroment.onrender.com)).  
+5. Observe que todos os dados inseridos são temporários e apenas para fins de teste.  
+
+> 💡 Dica: se não conseguir logar ou ver mudanças imediatas, tente recarregar a página ou limpar cache.  
+
+---
+
+## Baixar e testar localmente
 
 ## Acesse o repositório
 Clone o projeto do GitHub:
