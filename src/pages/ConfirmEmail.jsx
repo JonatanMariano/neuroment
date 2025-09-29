@@ -7,6 +7,7 @@ import Logo from "../components/globals/Logo.jsx";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import colors from "../styles/colors.js";
+import { API_URL } from "../config"; // Importa a URL da API do arquivo de configuração BD
 
 // Container geral
 const PageWrapper = styled.div`
@@ -123,7 +124,7 @@ const ConfirmEmail = () => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/auth/confirm-email", {
+    const response = await fetchfetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

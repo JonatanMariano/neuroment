@@ -11,6 +11,7 @@ import Logo from "../components/globals/Logo.jsx";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import colors from "../styles/colors.js";
+import { API_URL } from "../config"; // Importa a URL da API do arquivo de configuração BD
 
 // Container que envolve toda a página
 const PageWrapper = styled.div`
@@ -105,7 +106,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
