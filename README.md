@@ -16,7 +16,7 @@ Git
 
 VSCode recomendado
 
-Um banco Postgres local ou conta Supabase para o backend
+Um banco Postgres local ou conta Render para o backend
 
 Portas livres (backend padrão: 5000)
 
