@@ -17,8 +17,9 @@ Você não precisa baixar nada para testar o NeuroMent! Basta abrir o link do fr
 2. Faça cadastro de teste usando qualquer e-mail e senha.  
 3. Faça login.  
 4. Navegue pelas funcionalidades do app. Todas as requisições estão conectadas ao backend hospedado no Render ([https://neuroment.onrender.com](https://neuroment.onrender.com)).  
-5. Observe que todos os dados inseridos são temporários e apenas para fins de teste.  
-
+5. Todos os dados inseridos via app web são armazenados no banco de dados real do Render. 
+> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas.
+ 
 > 💡 Dica: se não conseguir logar ou ver mudanças imediatas, tente recarregar a página ou limpar cache.  
 
 ---
