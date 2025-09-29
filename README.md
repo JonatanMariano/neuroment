@@ -33,7 +33,9 @@ Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O fr
    - Todos os dados inseridos via app web são armazenados no nosso banco de dados real.
 
 > Tenha paciência durante o teste, principalmente na etapa de confirmação de e-mail. Mesmo após inserir o código correto, pode levar alguns segundos para que o acesso completo seja liberado.
-> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas. 
+> 
+> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas.
+> 
 > 💡 Dica: se não conseguir logar ou ver mudanças imediatas, tente recarregar a página ou limpar cache.  
 
 ---
