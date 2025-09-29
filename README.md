@@ -1,123 +1,113 @@
-NeuroMent — instruções para rodar localmente
+# NeuroMent — Instruções para Rodar Localmente
 
-Acesse o repositório e baixe o projeto. 
-GitHub
+## Acesse o repositório
+Clone o projeto do GitHub:
 
-https://github.com/JonatanMariano/neuroment
+```bash
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
 code .
-
-
 Requisitos mínimos
+Node.js (recomendado ≥ 18)
 
-Node.js (recomendado ≥ 18).
+npm (vem com Node.js)
 
-npm (vem com Node).
+Git
 
-Git.
+VSCode recomendado
 
-VSCode recomendado.
+Um banco Postgres local ou conta Supabase para o backend
 
-Um banco Postgres (local) ou conta Supabase para o backend.
-
-Portas livres (backend usa 5000).
+Portas livres (backend padrão: 5000)
 
 Instalação das dependências
+Frontend
+Na raiz do projeto:
 
-Na raiz do projeto (frontend):
-
+bash
+Copiar código
 cd /caminho/para/neuroment
 npm install
-# instalar styled-components caso necessário
+Se necessário, instale componentes estilizados:
+
+bash
+Copiar código
 npm install styled-components
-
-
-No backend:
-
+Backend
+bash
+Copiar código
 cd neuroment-backend
 npm install
-
-
-A pasta do backend está em neuroment-backend. 
-GitHub
+A pasta do backend está em neuroment-backend.
 
 Configurar o banco
-
 Use Postgres local ou Supabase.
 
-Crie o projeto no Supabase ou instale Postgres local.
+Crie o projeto no Supabase ou instale o Postgres local.
 
-Forneça as credenciais de conexão ao backend no local de configuração indicado dentro da pasta neuroment-backend (siga os arquivos de configuração do backend).
+Forneça as credenciais de conexão ao backend no arquivo de configuração indicado dentro da pasta neuroment-backend.
+
+Siga os arquivos de configuração do backend para garantir que tudo está correto.
 
 Rodar a aplicação (dois terminais)
-
-Terminal A (backend):
-
+Terminal A (backend)
+bash
+Copiar código
 cd /caminho/para/neuroment/neuroment-backend
-# depois de instalar as deps
 node index.js
+O backend iniciará na porta 5000.
 
-
-O servidor backend inicia na porta 5000.
-
-Terminal B (frontend):
-
+Terminal B (frontend)
+bash
+Copiar código
 cd /caminho/para/neuroment
 npm run dev
-
-
 O frontend abrirá na porta mostrada pelo Vite (ex: http://localhost:5173).
 
-Fluxo para testar a aplicação (passo a passo)
+Para testes de performance, o componente <SpeedInsights /> já está incluso no frontend.
 
+Fluxo para testar a aplicação
 Abra o frontend no navegador.
 
-Vá em “Criar conta” (signup).
+Vá em “Criar conta” (cadastre-se).
 
-Preencha todos os campos obrigatórios. Marque a checkbox de concordância.
+Preencha todos os campos obrigatórios e marque a caixa de concordância.
 
-Envie o formulário. Na tela de cadastro aparecerá um código de confirmação de 6 dígitos.
+Envie o formulário; na tela de cadastro aparecerá um código de confirmação de 6 dígitos.
 
-Copie esse código.
+Copie esse código e cole na tela de confirmação de e-mail.
 
-Cole o código na tela de confirmação de e-mail.
-
-Após confirmar, volte à tela de login e faça login com as credenciais que você criou.
+Após confirmar, volte para a tela de login e faça login com as credenciais criadas.
 
 O registro será persistido no banco.
 
-Comandos úteis (resumo)
-
-git clone https://github.com/JonatanMariano/neuroment.git
-# instalar deps frontend
+Comandos úteis
+Frontend
+bash
+Copiar código
 cd neuroment
 npm install
 npm install styled-components
-npm run dev        # roda frontend
-# instalar deps backend
+npm run dev
+Backend
+bash
+Copiar código
 cd neuroment-backend
 npm install
-node index.js      # roda backend na porta 5000
-
-
+node index.js
 Problemas comuns
-
-Erro de porta ocupada: libere a porta 5000 ou ajuste o backend.
+Erro de porta ocupado: libere a porta 5000 ou ajuste a configuração do backend.
 
 Erro de dependência: rode npm install na pasta correta.
 
-Se o frontend não carregar, verifique a URL mostrada pelo terminal do npm run dev.
+Frontend não carrega: verifique a URL mostrada pelo terminal (npm run dev).
 
-Se o backend acusa erro de conexão com o banco, verifique se o Postgres/Supabase está rodando e se as credenciais estão corretas na configuração do backend.
+Backend não conecta ao banco: confirme se Postgres/Supabase está rodando e se as credenciais estão corretas.
 
 Testes e verificação rápida
+Backend: acesse http://localhost:5000 (ou rota base) para confirmar que está ativo.
 
-Backend: acesse http://localhost:5000 (ou a rota base) para confirmar que está ativo.
-
-Frontend: acesse a URL do Vite e faça todo o fluxo de cadastro descrito no item 6.
+Frontend: acesse a URL do Vite e siga todo o fluxo de cadastro descrito acima.
 
 Dúvidas e problemas
-
-Abra uma issue no repositório com título curto e passo a passo do erro. 
-GitHub
+Abra uma issue no repositório com título curto e passo a passo do erro.
