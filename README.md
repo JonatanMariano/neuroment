@@ -27,6 +27,7 @@ Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O fr
 3. **Login:**
    - Primeiro, é necessário registrar a conta. **Não é possível fazer login antes de se cadastrar.**  
    - Para testar o login, volte para a tela de login, insira o e-mail e a senha cadastrados e entre no app.
+> Posso te mostrar que seus dados ficaram salvos no banco local e a senha criptografada (não consigo ver) respeitando as normas LGPD (basta entrar em contato 62994961253 e informar o horário do registro).
 
 4. **Navegação pelo app:**
    - Explore todas as funcionalidades. Todas as requisições de autenticação feitas pelo front-end estão conectadas ao backend: [https://neuroment.onrender.com](https://neuroment.onrender.com) As demais estão em manutenção e em breve tudo estará integrado ao back.
