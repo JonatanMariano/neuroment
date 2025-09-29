@@ -117,9 +117,12 @@ const Login = () => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         console.log("Login bem-sucedido!");
-        navigate("/planos"); // Redireciona para a página de planos
+        alert("Login realizado com sucesso!");
+        navigate("/planos");
+      } else {
         alert(data.message || "Erro no login");
       }
+
     } catch (error) {
       console.error("Erro ao tentar login:", error);
       alert("Não foi possível conectar ao servidor.");
