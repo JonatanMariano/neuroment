@@ -10,16 +10,29 @@
 
 ## Testar Web
 
-Você não precisa baixar nada para testar o NeuroMent! Basta abrir o link do frontend no Vercel, que já está integrado ao backend no Render.  
+Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O front-end está integrado ao backend, então todas as funcionalidades funcionam de verdade.
 
 **Passos:**
-1. Acesse o frontend: [https://neuroment.vercel.app](https://neuroment.vercel.app)  
-2. Faça cadastro de teste usando qualquer e-mail e senha.  
-3. Faça login.  
-4. Navegue pelas funcionalidades do app. Todas as requisições estão conectadas ao backend hospedado no Render ([https://neuroment.onrender.com](https://neuroment.onrender.com)).  
-5. Todos os dados inseridos via app web são armazenados no banco de dados real do Render. 
-> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas.
- 
+
+1. **Acesse o frontend:**
+   - Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
+   - Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`  
+
+2. **Cadastro de teste:**
+   - Crie uma conta usando qualquer e-mail e senha.  
+   - Ao concluir o cadastro, será gerado um **código de confirmação** na tela. **Anote esse código**, pois ele será necessário para confirmar a conta.  
+   - Aguarde um pouco até que a simulação da confirmação de e-mail seja processada; isso pode levar alguns segundos.
+
+3. **Login:**
+   - Primeiro, é necessário registrar a conta. **Não é possível fazer login antes de se cadastrar.**  
+   - Para testar o login, volte para a tela de login, insira o e-mail e a senha cadastrados e entre no app.
+
+4. **Navegação pelo app:**
+   - Explore todas as funcionalidades. Todas as requisições feitas pelo front-end estão conectadas ao backend: [https://neuroment.onrender.com](https://neuroment.onrender.com)  
+   - Todos os dados inseridos via app web são armazenados no banco de dados real do backend.
+
+> Tenha paciência durante o teste, principalmente na etapa de confirmação de e-mail. Mesmo após inserir o código correto, pode levar alguns segundos para que o acesso completo seja liberado.
+> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas. 
 > 💡 Dica: se não conseguir logar ou ver mudanças imediatas, tente recarregar a página ou limpar cache.  
 
 ---
