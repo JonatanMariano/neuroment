@@ -17,6 +17,7 @@ Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O fr
 1. **Acesse o frontend:**
    - Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
    - Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`  
+> Deixe a tradução automática desabilitada, esta versão inicial está em português e pode ter conflitos
 
 2. **Cadastro de teste:**
    - Crie uma conta usando qualquer e-mail e senha.  
