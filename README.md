@@ -28,8 +28,8 @@ Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O fr
    - Para testar o login, volte para a tela de login, insira o e-mail e a senha cadastrados e entre no app.
 
 4. **Navegação pelo app:**
-   - Explore todas as funcionalidades. Todas as requisições feitas pelo front-end estão conectadas ao backend: [https://neuroment.onrender.com](https://neuroment.onrender.com)  
-   - Todos os dados inseridos via app web são armazenados no banco de dados real do backend.
+   - Explore todas as funcionalidades. Todas as requisições de autenticação feitas pelo front-end estão conectadas ao backend: [https://neuroment.onrender.com](https://neuroment.onrender.com) As demais estão em manutenção e em breve tudo estará integrado ao back.
+   - Todos os dados inseridos via app web são armazenados no nosso banco de dados real.
 
 > Tenha paciência durante o teste, principalmente na etapa de confirmação de e-mail. Mesmo após inserir o código correto, pode levar alguns segundos para que o acesso completo seja liberado.
 > Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas. 
