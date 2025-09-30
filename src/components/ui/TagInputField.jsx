@@ -160,9 +160,9 @@ const TagInputField = ({
   );
 
   return (
-    <Wrapper>
+    <Wrapper ref={wrapperRef}>
       {name && <Label themeMode={theme}>{name}</Label>}
-      <InputArea onClick={() => setOpen(true)}>
+      <InputArea>
         {value.map((tag, idx) => (
           <Tag key={idx}>
             {tag}
@@ -172,9 +172,14 @@ const TagInputField = ({
         <Input
           placeholder={placeholder}
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+           setInputValue(e.target.value);
+           setOpen(true); // abre apenas quando começa a digitar
+          }}
+          onFocus={() => setOpen(true)} // abre se focar no campo
           onKeyDown={handleKeyDown}
         />
+
       </InputArea>
       {open && filteredOptions.length > 0 && (
         <SuggestionsList>

@@ -111,13 +111,13 @@ const Quest1 = () => {
                   />
                 )}
 
-                {q.tipo === "CheckBoxGroup" && (
-                  <CheckBoxGroup
-                    options={q.opcoes}
-                    value={answers[q.id] || []}
-                    onChange={(val) => handleAnswer(q.id, val)}
-                    multiple={true}
-                  />
+                {q.tipo === "CheckBoxGroup" && ( 
+                  <CheckBoxGroup 
+                   options={q.opcoes} 
+                   values={answers[q.id] || []} 
+                   onChange={(val) => handleAnswer(q.id, val)} 
+                   multiple={true} 
+                  /> 
                 )}
 
                 {q.tipo === "inputHours" && (

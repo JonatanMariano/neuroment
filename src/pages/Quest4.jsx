@@ -70,6 +70,11 @@ const QuestionText = styled.p`
 
 const Quest4 = () => {
   const navigate = useNavigate();
+  const [answers, setAnswers] = useState({});
+
+  const handleAnswer = (id, value) => {
+    setAnswers(prev => ({ ...prev, [id]: value }));
+  };
 
   const estiloQuestoes = questions.filter(q => q.categoria === "Estilos de aprendizagem");
 
@@ -88,19 +93,20 @@ const Quest4 = () => {
           <SessionTitle>4. Estilos de aprendizagem</SessionTitle>
 
           <QuestionsGrid>
-            {estiloQuestoes.map((q, index) => {
-              const Component = q.tipo;
-              return (
-                <QuestionWrapper key={q.id}>
-                  <QuestionText>   
-                    <p><strong>{index + 1}.</strong> {q.texto}</p>
-                  </QuestionText>
-                  {Component === "RadioGroup" && (
-                    <RadioGroup name={q.id} options={q.opcoes} />
-                  )}
-                </QuestionWrapper>
-              );
-            })}
+            {estiloQuestoes.map((q, index) => (
+              <QuestionWrapper key={q.id}>
+                <QuestionText>   
+                  <p><strong>{index + 1}.</strong> {q.texto}</p>
+                </QuestionText>
+                {q.tipo === "RadioGroup" && (
+                  <RadioGroup
+                    options={q.opcoes}
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />
+                )}
+              </QuestionWrapper>
+            ))}
           </QuestionsGrid>
 
           <Button 
@@ -117,3 +123,4 @@ const Quest4 = () => {
 };
 
 export default Quest4;
+

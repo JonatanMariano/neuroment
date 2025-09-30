@@ -71,6 +71,11 @@ const QuestionText = styled.p`
 
 const Quest3 = () => {
   const navigate = useNavigate();
+  const [answers, setAnswers] = useState({});
+
+  const handleAnswer = (id, value) => {
+    setAnswers(prev => ({ ...prev, [id]: value }));
+  };
 
   const inteligenciaQuestoes = questions.filter(q => q.categoria === "Inteligências múltiplas");
 
@@ -90,17 +95,19 @@ const Quest3 = () => {
           <SessionTitle>3. Inteligências múltiplas</SessionTitle>
 
           <Grid>
-            {inteligenciaQuestoes.map((q, index) => {
-              const Component = q.tipo;
-              return (
-                <QuestionWrapper key={q.id}>
-                 <QuestionText>   
+            {inteligenciaQuestoes.map((q, index) => (
+              <QuestionWrapper key={q.id}>
+                <QuestionText>   
                   <p><strong>{index + 1}.</strong> {q.texto}</p>
-                 </QuestionText> 
-                  {Component === "LikertScale" && <LikertScale name={q.id} />}
-                </QuestionWrapper>
-              );
-            })}
+                </QuestionText> 
+                {q.tipo === "LikertScale" && (
+                  <LikertScale
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />
+                )}
+              </QuestionWrapper>
+            ))}
           </Grid>
 
           <Button 
@@ -117,3 +124,4 @@ const Quest3 = () => {
 };
 
 export default Quest3;
+

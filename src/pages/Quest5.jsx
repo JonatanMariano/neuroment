@@ -52,7 +52,7 @@ const SessionTitle = styled.h3`
 
 const QuestionsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 `;
 
@@ -73,6 +73,11 @@ const QuestionText = styled.p`
 
 const Quest5 = () => {
   const navigate = useNavigate();
+  const [answers, setAnswers] = useState({});
+
+  const handleAnswer = (id, value) => {
+    setAnswers(prev => ({ ...prev, [id]: value }));
+  };
 
   const dificuldadeQuestoes = questions.filter(q => q.categoria === "Dificuldades");
 
@@ -99,30 +104,50 @@ const Quest5 = () => {
                 </QuestionText>
 
                 {q.tipo === "LikertScale" && (
-                  <LikertScale name={q.id} />
-                )}                               
+                  <LikertScale
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />
+                )}
 
                 {q.tipo === "RadioGroup" && (
-                  <RadioGroup name={q.id} options={q.opcoes} />
+                  <RadioGroup
+                    options={q.opcoes}
+                    value={answers[q.id] || ""}
+                    onChange={(val) => handleAnswer(q.id, val)}
+                  />
                 )}
 
                 {q.tipo === "inputField" && (
-                  <InputField name={q.id} placeholder="Digite sua resposta..." />
+                  <InputField
+                    style={{ paddingBottom: "300px" }}
+                    placeholder="Digite sua resposta..."
+                    value={answers[q.id] || ""}
+                    onChange={(e) => handleAnswer(q.id, e.target.value)}
+                  />
                 )}
 
                 {q.tipo === "CheckBoxGroup+InputField" && (
                   <div>
-                    <CheckBoxGroup name={q.id} options={q.opcoes} />
-                    <InputField name={`${q.id}_outro`} placeholder="Especifique, se necessário..." />
+                    <CheckBoxGroup
+                      options={q.opcoes}
+                      values={answers[q.id] || []}
+                      onChange={(val) => handleAnswer(q.id, val)}
+                    />
+                    <InputField                      
+                      placeholder="Especifique, se necessário..."
+                      value={answers[`${q.id}_outro`] || ""}
+                      onChange={(e) => handleAnswer(`${q.id}_outro`, e.target.value)}
+                    />
                   </div>
                 )}
               </QuestionWrapper>
             ))}
           </QuestionsGrid>
 
-          <Button 
+          <Button
             onClick={() => navigate("/planos")}
-            style={{ marginTop: "24px", alignSelf: "center"}}
+            style={{ marginTop: "24px", alignSelf: "center" }}
           >
             Finalizar
           </Button>
@@ -134,3 +159,6 @@ const Quest5 = () => {
 };
 
 export default Quest5;
+
+
+
