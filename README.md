@@ -1,3 +1,6 @@
+
+---
+
 ````markdown
 # NeuroMent
 
@@ -14,13 +17,11 @@
 
 Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O front-end está integrado ao backend, então todas as funcionalidades funcionam de verdade.
 
-**Passos:**
-
 ### 1. Acesse o frontend
 - Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
 - Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`
 
-> **Importante:** Desabilite a tradução automática.  
+> **Importante:** desabilite a tradução automática.  
 > O server do Render reinicia as instâncias e, no plano gratuito, pode levar até 50 segundos para responder às requisições.
 
 ### 2. Cadastro de teste
@@ -54,7 +55,7 @@ git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
 code .
 ````
-````markdown
+
 ### 2. Requisitos mínimos
 
 * **Node.js ≥ 18**
@@ -113,7 +114,7 @@ npm run dev
 ### 6. Fluxo para testar a aplicação
 
 1. Abra o frontend no navegador.
-2. Vá em “Criar conta” e preencha todos os campos obrigatórios.
+2. Vá em **“Criar conta”** e preencha todos os campos obrigatórios.
 3. Envie o formulário; aparecerá um **código de confirmação**.
 4. Cole o código na tela de confirmação de e-mail.
 5. Volte para a tela de login e faça login com as credenciais criadas.
@@ -140,15 +141,15 @@ node index.js
 
 ### 8. Problemas comuns
 
-* Porta ocupada: libere a porta 5000 ou ajuste a configuração do backend.
-* Dependência faltando: rode `npm install` na pasta correta.
-* Frontend não carrega: verifique a URL do terminal (`npm run dev`).
-* Backend não conecta: confirme Postgres/Supabase e credenciais.
+* **Porta ocupada:** libere a porta 5000 ou ajuste a configuração do backend.
+* **Dependência faltando:** rode `npm install` na pasta correta.
+* **Frontend não carrega:** verifique a URL do terminal (`npm run dev`).
+* **Backend não conecta:** confirme Postgres/Supabase e credenciais.
 
 ### 9. Testes rápidos
 
-* Backend: acesse `http://localhost:5000`
-* Frontend: acesse a URL do Vite e siga fluxo de cadastro.
+* **Backend:** acesse `http://localhost:5000`
+* **Frontend:** acesse a URL do Vite e siga fluxo de cadastro.
 
 ### 10. Dúvidas e problemas
 
@@ -188,7 +189,7 @@ git commit -m "Descrição do que foi feito"
 git push origin nome-da-feature
 ```
 
-* Abra um Pull Request no GitHub:
+* Abra um **Pull Request** no GitHub:
 
   * **Origem:** sua branch
   * **Destino:** `main`
@@ -213,8 +214,16 @@ git push origin nome-da-feature --force
 
 ### 4. Regras importantes
 
-* Sempre use pull requests.
+* Sempre use **pull requests**.
 * Resolva todas as conversas antes do merge.
 * Mantenha commits claros e objetivos.
-* Ninguém deve dar push direto na `main`.
+* **Ninguém deve dar push direto na `main`.**
 
+```
+
+---
+
+Se você quiser, posso agora criar uma **versão final ainda mais “bonita visualmente”**, com **negrito extra, emojis, alertas e subtítulos destacados**, para facilitar leitura de qualquer colaborador novo.  
+
+Quer que eu faça isso?
+```
