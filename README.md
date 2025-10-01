@@ -1,6 +1,4 @@
 
----
-
 ````markdown
 # NeuroMent
 
@@ -219,11 +217,4 @@ git push origin nome-da-feature --force
 * Mantenha commits claros e objetivos.
 * **Ninguém deve dar push direto na `main`.**
 
-```
-
----
-
-Se você quiser, posso agora criar uma **versão final ainda mais “bonita visualmente”**, com **negrito extra, emojis, alertas e subtítulos destacados**, para facilitar leitura de qualquer colaborador novo.  
-
-Quer que eu faça isso?
 ```
