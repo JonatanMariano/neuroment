@@ -1,9 +1,3 @@
-Beleza, Jonatan. Entendi: **tudo que for texto, títulos, listas, negrito, subtítulos, destaques, deve estar em Markdown**. **Só os comandos/códigos dentro de blocos `bash` ou `sql` continuam como código**, o resto tem que ser Markdown completo.
-
-Aqui está o README totalmente reescrito dessa forma:
-
----
-
 ````markdown
 # NeuroMent
 
