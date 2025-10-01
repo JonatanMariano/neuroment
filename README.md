@@ -5,6 +5,7 @@
 ### Sumário
 1. [Testar Web](#testar-web)
 2. [Baixar e testar localmente](#baixar-e-testar-localmente)
+3. [Contribuição GitHub](#contribuição-github)
 
 ---
 
@@ -17,42 +18,40 @@ Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O fr
 1. **Acesse o frontend:**
    - Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
    - Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`  
-> Deixe a tradução automática desabilitada, esta versão inicial está em português e pode ter conflitos
-> O server do Render reinicia as instâncias e no plano gratuito pode levar até cerca de 50 segundos para responder às requisições
+
+> Deixe a tradução automática desabilitada, esta versão inicial está em português e pode ter conflitos.  
+> O server do Render reinicia as instâncias e no plano gratuito pode levar até cerca de 50 segundos para responder às requisições.
 
 2. **Cadastro de teste:**
    - Crie uma conta usando qualquer e-mail e senha.  
-   - Ao concluir o cadastro, será gerado um **código de confirmação** na tela. **Anote esse código**, pois ele será necessário para confirmar a conta.  
-   - Aguarde um pouco até que a simulação da confirmação de e-mail seja processada; isso pode levar alguns segundos.
+   - Ao concluir o cadastro, será gerado um **código de confirmação** na tela. **Anote esse código**.  
+   - Aguarde alguns segundos para que a simulação da confirmação de e-mail seja processada.
 
 3. **Login:**
-   - Primeiro, é necessário registrar a conta. **Não é possível fazer login antes de se cadastrar.**  
-   - Para testar o login, volte para a tela de login, insira o e-mail e a senha cadastrados e entre no app.
-> Posso te mostrar que seus dados ficaram salvos no banco local e a senha criptografada (não consigo ver) respeitando as normas LGPD (basta entrar em contato 62994961253 e informar o horário do registro).
+   - É necessário registrar a conta antes de fazer login.  
+   - Use o e-mail e senha cadastrados para acessar o app.
+
+> Seus dados ficam salvos no banco local com a senha criptografada. LGPD respeitada.
 
 4. **Navegação pelo app:**
-   - Explore todas as funcionalidades. Todas as requisições de autenticação feitas pelo front-end estão conectadas ao backend: [https://neuroment.onrender.com](https://neuroment.onrender.com) As demais estão em manutenção e em breve tudo estará integrado ao back.
-   - Todos os dados inseridos via app web são armazenados no nosso banco de dados real.
+   - Explore todas as funcionalidades. O backend está em [https://neuroment.onrender.com](https://neuroment.onrender.com).  
+   - Todos os dados inseridos via app web são armazenados no banco real.
 
-> Tenha paciência durante o teste, principalmente na etapa de confirmação de e-mail. Mesmo após inserir o código correto, pode levar alguns segundos para que o acesso completo seja liberado.
-> 
-> Teste normalmente, mas lembre-se de que as contas e informações criadas permanecem até serem removidas.
-> 
-> 💡 Dica: se não conseguir logar ou ver mudanças imediatas, tente recarregar a página ou limpar cache.  
+> Tenha paciência durante a confirmação de e-mail; mesmo após inserir o código, pode levar alguns segundos para o acesso completo.  
+> 💡 Dica: se não conseguir logar ou ver mudanças imediatas, recarregue a página ou limpe o cache.
 
 ---
 
 ## Baixar e testar localmente
 
-## Acesse o repositório
+### 1. Acesse o repositório
 Clone o projeto do GitHub:
-
 ```bash
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
 code .
-Requisitos mínimos
-Node.js (recomendado ≥ 18)
+2. Requisitos mínimos
+Node.js ≥ 18
 
 npm (vem com Node.js)
 
@@ -60,41 +59,38 @@ Git
 
 VSCode recomendado
 
-Um banco Postgres local ou conta Render para o backend
+Banco PostgreSQL local ou conta Render para o backend
 
 Portas livres (backend padrão: 5000)
 
-Instalação das dependências
+3. Instalação das dependências
 Frontend
-Na raiz do projeto:
 
 bash
 Copiar código
 cd /caminho/para/neuroment
 npm install
-Se necessário, instale componentes estilizados:
-
-bash
-Copiar código
-npm install styled-components
+npm install styled-components   # se necessário
 Backend
+
 bash
 Copiar código
 cd neuroment-backend
 npm install
 A pasta do backend está em neuroment-backend.
 
-Configurar o banco
+4. Configurar o banco
 Use Postgres local ou Supabase.
 
-Crie o projeto no Supabase ou instale o Postgres local.
+Crie o projeto no Supabase ou configure Postgres local.
 
-Forneça as credenciais de conexão ao backend no arquivo de configuração indicado dentro da pasta neuroment-backend.
+Forneça credenciais de conexão no arquivo de configuração dentro de neuroment-backend.
 
-Siga os arquivos de configuração do backend para garantir que tudo está correto.
+Siga os arquivos de configuração do backend.
 
-Rodar a aplicação (dois terminais)
+5. Rodar a aplicação (dois terminais)
 Terminal A (backend)
+
 bash
 Copiar código
 cd /caminho/para/neuroment/neuroment-backend
@@ -102,31 +98,29 @@ node index.js
 O backend iniciará na porta 5000.
 
 Terminal B (frontend)
+
 bash
 Copiar código
 cd /caminho/para/neuroment
 npm run dev
 O frontend abrirá na porta mostrada pelo Vite (ex: http://localhost:5173).
 
-Para testes de performance, o componente <SpeedInsights /> já está incluso no frontend.
-
-Fluxo para testar a aplicação
+6. Fluxo para testar a aplicação
 Abra o frontend no navegador.
 
-Vá em “Criar conta” (cadastre-se).
+Vá em “Criar conta” e preencha todos os campos obrigatórios.
 
-Preencha todos os campos obrigatórios e marque a caixa de concordância.
+Envie o formulário; aparecerá um código de confirmação.
 
-Envie o formulário; na tela de cadastro aparecerá um código de confirmação de 6 dígitos.
+Cole o código na tela de confirmação de e-mail.
 
-Copie esse código e cole na tela de confirmação de e-mail.
-
-Após confirmar, volte para a tela de login e faça login com as credenciais criadas.
+Volte para a tela de login e faça login com as credenciais criadas.
 
 O registro será persistido no banco.
 
-Comandos úteis
+7. Comandos úteis
 Frontend
+
 bash
 Copiar código
 cd neuroment
@@ -134,24 +128,87 @@ npm install
 npm install styled-components
 npm run dev
 Backend
+
 bash
 Copiar código
 cd neuroment-backend
 npm install
 node index.js
-Problemas comuns
-Erro de porta ocupado: libere a porta 5000 ou ajuste a configuração do backend.
+8. Problemas comuns
+Porta ocupada: libere a porta 5000 ou ajuste configuração do backend.
 
-Erro de dependência: rode npm install na pasta correta.
+Dependência faltando: rode npm install na pasta correta.
 
-Frontend não carrega: verifique a URL mostrada pelo terminal (npm run dev).
+Frontend não carrega: verifique URL do terminal (npm run dev).
 
-Backend não conecta ao banco: confirme se Postgres/Supabase está rodando e se as credenciais estão corretas.
+Backend não conecta: confirme Postgres/Supabase e credenciais.
 
-Testes e verificação rápida
-Backend: acesse http://localhost:5000 (ou rota base) para confirmar que está ativo.
+9. Testes rápidos
+Backend: acesse http://localhost:5000
 
-Frontend: acesse a URL do Vite e siga todo o fluxo de cadastro descrito acima.
+Frontend: acesse a URL do Vite e siga fluxo de cadastro.
 
-Dúvidas e problemas
+10. Dúvidas e problemas
 Abra uma issue no repositório com título curto e passo a passo do erro.
+
+Contribuição GitHub
+1. Configuração Git local
+bash
+Copiar código
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+Clone o repositório:
+
+bash
+Copiar código
+git clone https://github.com/JonatanMariano/neuroment.git
+cd neuroment
+2. Fluxo de trabalho
+Crie uma branch para a tarefa:
+
+bash
+Copiar código
+git checkout -b nome-da-feature
+Faça commits claros:
+
+bash
+Copiar código
+git add .
+git commit -m "Descrição do que foi feito"
+Envie a branch:
+
+bash
+Copiar código
+git push origin nome-da-feature
+Abra um Pull Request no GitHub:
+
+Origem: sua branch
+
+Destino: main
+
+Adicione descrição e comentários do que foi feito
+
+A branch main está protegida: não é possível dar push direto.
+
+3. Sincronização com a main
+Antes de atualizar sua branch:
+
+bash
+Copiar código
+git fetch origin
+git rebase origin/main   # ou git merge origin/main
+Resolva conflitos se houver:
+
+bash
+Copiar código
+git add .
+git rebase --continue   # se usou rebase
+git push origin nome-da-feature --force
+4. Regras importantes
+Sempre use pull requests.
+
+Resolva todas as conversas antes do merge.
+
+Mantenha commits claros e objetivos.
+
+Ninguém deve dar push direto na main.
