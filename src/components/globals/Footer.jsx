@@ -1,17 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom"; // necessário para navegação sem recarregar a página
 
 function Footer({ email = "suporte@neuroment.com.br" }) {
   const currentYear = new Date().getFullYear();
 
   const style = {
-    backgroundColor: "#009688", // verde-água mais escuro
+    backgroundColor: "#009688",
     color: "#fff",
     textAlign: "center",
     padding: "12px",
     fontSize: "14px",
-    width: "100%",          // ocupa toda a largura
-    marginTop: "auto",      // empurra para o fim do container flex
+    width: "100%",
+    marginTop: "auto",
   };
 
   return (
@@ -22,6 +23,11 @@ function Footer({ email = "suporte@neuroment.com.br" }) {
         <a href={`mailto:${email}`} style={{ color: "#fff" }}>
           {email}
         </a>
+      </p>
+      <p>
+        <Link to="/sobre" style={{ color: "#fff", textDecoration: "underline" }}>
+          Sobre
+        </Link>
       </p>
     </footer>
   );

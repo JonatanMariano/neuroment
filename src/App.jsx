@@ -12,6 +12,7 @@ import Quest3 from "./pages/Quest3.jsx";
 import Quest4 from "./pages/Quest4.jsx";  
 import Quest5 from "./pages/Quest5.jsx";
 import Planos from "./pages/Planos.jsx";
+import Sobre from "./pages/Sobre.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/questionario-4" element={<Quest4 />} />
           <Route path="/questionario-5" element={<Quest5 />} />
           <Route path="/planos" element={<Planos />} />
+          <Route path="/sobre" element={<Sobre />} />
         </Routes>
       </Router>
     </>

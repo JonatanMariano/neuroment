@@ -8,10 +8,10 @@ const colors = {
   grayLight: "#e0e0e0",
 
   // Primárias - verde-água / teal
-  tealDark: "rgba(1, 38, 34, 1)",
+  tealDark: "#012622ff",
   tealMedium: "#548687",
   tealLight: "#5eead4",
-  mint: "rgba(170, 250, 200, 1)",
+  mint: "#aafac8ff",
 
   // Secundárias - laranja / accent
   orangeSoft: "#f4c095",
@@ -30,3 +30,5 @@ const colors = {
 };
 
 export default colors;
+
+

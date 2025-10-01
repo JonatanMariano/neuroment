@@ -1,4 +1,3 @@
-// src/components/ui/Button.jsx
 import React from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors.js";
@@ -10,13 +9,15 @@ const StyledButton = styled.button`
   padding: 12px 24px;
   border: 2px solid ${colors.tealDark};
   border-radius: 6px;
-  background-color: ${colors.tealDark};
-  color: ${colors.tealLight};
+  background-color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.tealMedium : colors.tealDark};
+  color: ${({ themeMode }) =>
+    themeMode === "dark" ? colors.orangeSoft : colors.tealLight};
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  min-height: 44px; /* altura fixa padrão */
+  min-height: 44px;
   white-space: nowrap;
 
   &:hover {
@@ -42,8 +43,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+const Button = ({ children, theme = "light", ...props }) => {
+  return <StyledButton themeMode={theme} {...props}>{children}</StyledButton>;
 };
 
 export default Button;
+
