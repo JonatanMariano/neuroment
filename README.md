@@ -1,5 +1,3 @@
-
-````markdown
 # NeuroMent
 
 ## Instruções para testar localmente ou web
@@ -52,169 +50,159 @@ Clone o projeto do GitHub:
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
 code .
-````
+2. Requisitos mínimos
+Node.js ≥ 18
 
-### 2. Requisitos mínimos
+npm (vem com Node.js)
 
-* **Node.js ≥ 18**
-* **npm** (vem com Node.js)
-* **Git**
-* **VSCode recomendado**
-* **Banco PostgreSQL local** ou conta Render para o backend
-* Portas livres (backend padrão: 5000)
+Git
 
-### 3. Instalação das dependências
+VSCode recomendado
 
-**Frontend:**
+Banco PostgreSQL local ou conta Render para o backend
 
-```bash
+Portas livres (backend padrão: 5000)
+
+3. Instalação das dependências
+Frontend:
+
+bash
+Copiar código
 cd /caminho/para/neuroment
 npm install
 npm install styled-components   # se necessário
-```
+Backend:
 
-**Backend:**
-
-```bash
+bash
+Copiar código
 cd neuroment-backend
 npm install
-```
+A pasta do backend está em neuroment-backend.
 
-> A pasta do backend está em `neuroment-backend`.
+4. Configurar o banco
+Use Postgres local ou Supabase.
 
-### 4. Configurar o banco
+Crie o projeto no Supabase ou configure Postgres local.
 
-* Use Postgres local ou Supabase.
-* Crie o projeto no Supabase ou configure Postgres local.
-* Forneça credenciais de conexão no arquivo de configuração dentro de `neuroment-backend`.
-* Siga os arquivos de configuração do backend.
+Forneça credenciais de conexão no arquivo de configuração dentro de neuroment-backend.
 
-### 5. Rodar a aplicação (dois terminais)
+Siga os arquivos de configuração do backend.
 
-**Terminal A (backend):**
+5. Rodar a aplicação (dois terminais)
+Terminal A (backend):
 
-```bash
+bash
+Copiar código
 cd /caminho/para/neuroment/neuroment-backend
 node index.js
-```
+O backend iniciará na porta 5000.
 
-> O backend iniciará na porta 5000.
+Terminal B (frontend):
 
-**Terminal B (frontend):**
-
-```bash
+bash
+Copiar código
 cd /caminho/para/neuroment
 npm run dev
-```
+O frontend abrirá na porta mostrada pelo Vite (ex: http://localhost:5173).
 
-> O frontend abrirá na porta mostrada pelo Vite (ex: [http://localhost:5173](http://localhost:5173)).
+6. Fluxo para testar a aplicação
+Abra o frontend no navegador.
 
-### 6. Fluxo para testar a aplicação
+Vá em “Criar conta” e preencha todos os campos obrigatórios.
 
-1. Abra o frontend no navegador.
-2. Vá em **“Criar conta”** e preencha todos os campos obrigatórios.
-3. Envie o formulário; aparecerá um **código de confirmação**.
-4. Cole o código na tela de confirmação de e-mail.
-5. Volte para a tela de login e faça login com as credenciais criadas.
-6. O registro será persistido no banco.
+Envie o formulário; aparecerá um código de confirmação.
 
-### 7. Comandos úteis
+Cole o código na tela de confirmação de e-mail.
 
-**Frontend:**
+Volte para a tela de login e faça login com as credenciais criadas.
 
-```bash
+O registro será persistido no banco.
+
+7. Comandos úteis
+Frontend:
+
+bash
+Copiar código
 cd neuroment
 npm install
 npm install styled-components
 npm run dev
-```
+Backend:
 
-**Backend:**
-
-```bash
+bash
+Copiar código
 cd neuroment-backend
 npm install
 node index.js
-```
+8. Problemas comuns
+Porta ocupada: libere a porta 5000 ou ajuste a configuração do backend.
 
-### 8. Problemas comuns
+Dependência faltando: rode npm install na pasta correta.
 
-* **Porta ocupada:** libere a porta 5000 ou ajuste a configuração do backend.
-* **Dependência faltando:** rode `npm install` na pasta correta.
-* **Frontend não carrega:** verifique a URL do terminal (`npm run dev`).
-* **Backend não conecta:** confirme Postgres/Supabase e credenciais.
+Frontend não carrega: verifique a URL do terminal (npm run dev).
 
-### 9. Testes rápidos
+Backend não conecta: confirme Postgres/Supabase e credenciais.
 
-* **Backend:** acesse `http://localhost:5000`
-* **Frontend:** acesse a URL do Vite e siga fluxo de cadastro.
+9. Testes rápidos
+Backend: acesse http://localhost:5000
 
-### 10. Dúvidas e problemas
+Frontend: acesse a URL do Vite e siga fluxo de cadastro.
 
-Abra uma **issue** no repositório com título curto e passo a passo do erro.
+10. Dúvidas e problemas
+Abra uma issue no repositório com título curto e passo a passo do erro.
 
----
-
-## Contribuição GitHub
-
-### 1. Configuração Git local
-
-```bash
+Contribuição GitHub
+1. Configuração Git local
+bash
+Copiar código
 git config --global user.name "Seu Nome"
 git config --global user.email "seu@email.com"
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
-```
+2. Fluxo de trabalho
+Crie uma branch para a tarefa:
 
-### 2. Fluxo de trabalho
-
-* Crie uma branch para a tarefa:
-
-```bash
+bash
+Copiar código
 git checkout -b nome-da-feature
-```
+Faça commits claros:
 
-* Faça commits claros:
-
-```bash
+bash
+Copiar código
 git add .
 git commit -m "Descrição do que foi feito"
-```
+Envie a branch:
 
-* Envie a branch:
-
-```bash
+bash
+Copiar código
 git push origin nome-da-feature
-```
+Abra um Pull Request no GitHub:
 
-* Abra um **Pull Request** no GitHub:
+Origem: sua branch
 
-  * **Origem:** sua branch
-  * **Destino:** `main`
-  * Adicione descrição e comentários do que foi feito
+Destino: main
 
-> A branch `main` está protegida: **não é possível dar push direto**.
+Adicione descrição e comentários do que foi feito
 
-### 3. Sincronização com a main
+A branch main está protegida: não é possível dar push direto.
 
-```bash
+3. Sincronização com a main
+bash
+Copiar código
 git fetch origin
 git rebase origin/main   # ou git merge origin/main
-```
+Resolva conflitos se houver:
 
-* Resolva conflitos se houver:
-
-```bash
+bash
+Copiar código
 git add .
 git rebase --continue   # se usou rebase
 git push origin nome-da-feature --force
-```
+4. Regras importantes
+Sempre use pull requests.
 
-### 4. Regras importantes
+Resolva todas as conversas antes do merge.
 
-* Sempre use **pull requests**.
-* Resolva todas as conversas antes do merge.
-* Mantenha commits claros e objetivos.
-* **Ninguém deve dar push direto na `main`.**
+Mantenha commits claros e objetivos.
 
-```
+Ninguém deve dar push direto na main.
