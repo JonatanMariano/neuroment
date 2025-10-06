@@ -2,11 +2,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Background from "../components/globals/Background.jsx";
-import Footer from "../components/globals/Footer.jsx";
-import Button from "../components/ui/Button.jsx";
-import Logo from "../components/globals/Logo.jsx";
-import colors from "../styles/colors.js";
+import Background from "../../components/globals/Background.jsx";
+import Footer from "../../components/globals/Footer.jsx";
+import Button from "../../components/ui/Button.jsx";
+import Logo from "../../components/globals/Logo.jsx";
+import colors from "../../styles/colors.js";
 
 const PageWrapper = styled.div`
   display: flex;
