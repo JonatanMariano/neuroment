@@ -1,12 +1,19 @@
 
+import React from "react";
 import { Outlet } from "react-router-dom";
-const BgLight = require("../../assets/imgBackGraund/backgroundLight.svg").default;
+import BgLight from "../../assets/imgBackground/backgroundLight.svg";
 
 const LayoutStart = () => {
   return (
     <div
-      className="layoutStart"
-      style={{ backgroundImage: `url(${BgLight})` }}
+      className="w-screen h-screen justify-content-center align-items-center flex "
+      style={{
+        backgroundImage: `url(${BgLight})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed' // Opcional: fixa durante scroll
+      }}
     >
       <Outlet />
     </div>
