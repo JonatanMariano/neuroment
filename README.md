@@ -20,6 +20,8 @@ Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do
 **POST**  
 `http://127.0.0.1:8000/api/auth/register/`
 
+ATENÇÂO: username não é o nome da pessoa, é um nome de user.
+
 **Body (JSON)**:
 ```json
 {
@@ -49,7 +51,7 @@ Body (JSON):
 json
 Copiar código
 {
-  "username": "jonatan_teste2@example.com",  // ou "jonatan_teste2"
+  "username": "jonatan_teste2@example.com",  // ou "jonatan_teste2" (pode logar tanto com username, quanto com email)
   "password": "senha123"
 }
 Resposta esperada (JSON):
