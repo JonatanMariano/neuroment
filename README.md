@@ -1,4 +1,3 @@
-````md
 # NeuroMent
 
 ## Instruções para testar localmente ou web
@@ -44,86 +43,70 @@ Clone o projeto:
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
 code .
-````
+2. Requisitos mínimos
+Node.js ≥ 18
 
-### 2. Requisitos mínimos
+npm (vem com Node.js)
 
-* Node.js ≥ 18
-* npm (vem com Node.js)
-* Git
-* VSCode (recomendado)
-* Backend Django configurado localmente
+Git
+
+VSCode (recomendado)
+
+Backend Django configurado localmente
 
 Repositório do backend (privado):
-👉 **NeuroMent-Backend**
+👉 NeuroMent-Backend
 
----
-
-### 3. Instalação das dependências
-
+3. Instalação das dependências
 Frontend:
 
-```bash
+bash
+Copiar código
 cd neuroment
 npm install
 npm install styled-components   # se necessário
-```
-
----
-
-### 4. Rodar o backend (Django)
-
+4. Rodar o backend (Django)
 No diretório do backend:
 
-```bash
+bash
+Copiar código
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-```
-
 O backend iniciará em:
 
-```
+cpp
+Copiar código
 http://127.0.0.1:8000
-```
-
----
-
-### 5. Rodar o frontend
-
-```bash
+5. Rodar o frontend
+bash
+Copiar código
 npm run dev
-```
-
 O frontend abrirá em algo como:
 
-```
+arduino
+Copiar código
 http://localhost:5173
-```
+Testar rotas do backend
+O backend atual é Django REST Framework + JWT.
 
----
-
-## Testar rotas do backend
-
-O backend atual é **Django REST Framework + JWT**.
-
-🔹 **Registro de Usuário (Register)**
+🔹 Registro de Usuário (Register)
 POST
-`http://127.0.0.1:8000/api/auth/register/`
+http://127.0.0.1:8000/api/auth/register/
 
 Body (JSON):
 
-```json
+json
+Copiar código
 {
   "username": "usuario_teste",
   "email": "usuario_teste@example.com",
   "password": "senha123"
 }
-```
-
 Resposta esperada:
 
-```json
+json
+Copiar código
 {
   "user": {
     "id": 1,
@@ -133,72 +116,57 @@ Resposta esperada:
   "access": "<ACCESS_TOKEN>",
   "refresh": "<REFRESH_TOKEN>"
 }
-```
-
----
-
-🔹 **Login (Auth)**
+🔹 Login (Auth)
 POST
-`http://127.0.0.1:8000/api/auth/token/`
+http://127.0.0.1:8000/api/auth/token/
 
 Body (JSON):
 
-```json
+json
+Copiar código
 {
   "username": "usuario_teste@example.com",
   "password": "senha123"
 }
-```
-
 Resposta esperada:
 
-```json
+json
+Copiar código
 {
   "refresh": "<REFRESH_TOKEN>",
   "access": "<ACCESS_TOKEN>"
 }
-```
-
----
-
-🔹 **Perfil do Usuário (Profile)**
+🔹 Perfil do Usuário (Profile)
 GET
-`http://127.0.0.1:8000/api/accounts/profile/`
+http://127.0.0.1:8000/api/accounts/profile/
 
 Header:
 
-```
+makefile
+Copiar código
 Authorization: Bearer <ACCESS_TOKEN>
-```
-
 Resposta esperada:
 
-```json
+json
+Copiar código
 {
   "id": 1,
   "username": "usuario_teste",
   "email": "usuario_teste@example.com"
 }
-```
-
----
-
-## Sugestão de integração com o backend
-
+Sugestão de integração com o backend
 O front-end que precisa integrar estas rotas está neste repositório:
-👉 [NeuroMent Front-End](https://github.com/JonatanMariano/neuroment)
+👉 NeuroMent Front-End
 
-### Onde e como integrar:
+Onde e como integrar:
+Localização dos serviços de API
+Crie ou edite a pasta src/services/ (ou similar) para adicionar as chamadas HTTP.
 
-#### Localização dos serviços de API
+Use fetch ou axios para conectar às rotas do Django backend.
 
-Crie ou edite a pasta `src/services/` (ou similar) para adicionar as chamadas HTTP.
-
-Use **fetch** ou **axios** para conectar às rotas do Django backend.
-
-#### Exemplo com Axios:
-
-```javascript
+Exemplo com Axios:
+javascript
+Copiar código
 import axios from "axios";
 
 const api = axios.create({
@@ -212,97 +180,71 @@ export const loginUser = async (email, password) => {
   });
   return response.data;
 };
-```
-
-#### Tokens de autenticação
-
-Após login, salve os tokens (`access`, `refresh`) em `localStorage` ou no **Context API**.
+Tokens de autenticação
+Após login, salve os tokens (access, refresh) em localStorage ou no Context API.
 
 Envie o token no header das rotas protegidas:
 
-```js
+js
+Copiar código
 Authorization: `Bearer ${access_token}`
-```
+Configuração de ambiente
+No front-end, adicione o backend base URL em .env:
 
----
-
-### Configuração de ambiente
-
-No front-end, adicione o backend base URL em `.env`:
-
-```
+ini
+Copiar código
 VITE_API_URL=http://127.0.0.1:8000/api
-```
+Testes
+Use o Thunder Client, Postman ou o próprio front-end para testar os endpoints.
 
----
+Comece testando registro e login antes de implementar telas que dependam do perfil do usuário.
 
-### Testes
+⚠️ Nas próximas horas será feito o deploy do backend e novas rotas serão implementadas para dados pessoais e questionários.
 
-Use o **Thunder Client**, **Postman** ou o próprio front-end para testar os endpoints.
-
-Comece testando **registro e login** antes de implementar telas que dependam do perfil do usuário.
-
-⚠️ Nas próximas horas será feito o deploy do backend e novas rotas serão implementadas para **dados pessoais** e **questionários**.
-
----
-
-## Contribuição GitHub
-
-### 1. Configuração Git local
-
-```bash
+Contribuição GitHub
+1. Configuração Git local
+bash
+Copiar código
 git config --global user.name "Seu Nome"
 git config --global user.email "seu@email.com"
 git clone https://github.com/JonatanMariano/neuroment.git
 cd neuroment
-```
-
-### 2. Fluxo de trabalho
-
+2. Fluxo de trabalho
 Crie uma branch para a tarefa:
 
-```bash
+bash
+Copiar código
 git checkout -b nome-da-feature
-```
-
 Faça commits claros:
 
-```bash
+bash
+Copiar código
 git add .
 git commit -m "Descrição do que foi feito"
-```
-
 Envie a branch:
 
-```bash
+bash
+Copiar código
 git push origin nome-da-feature
-```
-
-### 3. Sincronização com a main
-
-```bash
+3. Sincronização com a main
+bash
+Copiar código
 git fetch origin
 git rebase origin/main
 # ou
 git merge origin/main
-```
-
 Resolva conflitos se houver:
 
-```bash
+bash
+Copiar código
 git add .
 git rebase --continue   # se usou rebase
 git push origin nome-da-feature --force
-```
+4. Regras importantes
+Faça commits claros e objetivos.
 
----
+Sempre mantenha o repositório atualizado antes de começar uma nova feature.
 
-### 4. Regras importantes
+Use branches separadas para cada funcionalidade.
 
-* Faça commits claros e objetivos.
-* Sempre mantenha o repositório atualizado antes de começar uma nova feature.
-* Use branches separadas para cada funcionalidade.
-* Evite conflitos desnecessários com a branch `main`.
-
-```
-```
+Evite conflitos desnecessários com a branch main.
