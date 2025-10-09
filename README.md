@@ -1,80 +1,79 @@
 ````md
-# Integração entre o Back-end (Django REST) e o Front-end (NeuroMent React)
+# NeuroMent
 
-## Sumário
-1. Estrutura de Integração
-2. Conexão API → Front-end
-3. Configuração de Variáveis de Ambiente
-4. Testes Locais
-5. Deploy e Integração Contínua
+## Instruções para testar localmente ou web
 
----
-
-## 1. Estrutura de Integração
-O front-end do NeuroMent (React) está no repositório:
-👉 [https://github.com/JonatanMariano/neuroment](https://github.com/JonatanMariano/neuroment)
-
-O back-end (Django REST Framework) fornece as rotas de autenticação, cadastro, planos de estudo e personalização do usuário.
-
-- Front-end: React + Axios + Context API
-- Back-end: Django REST + JWT + PostgreSQL
+### Sumário
+1. [Testar Web](#testar-web)
+2. [Baixar e testar localmente](#baixar-e-testar-localmente)
+3. [Testar rotas do backend](#testar-rotas-do-backend)
+4. [Sugestão de integração com o backend](#sugestão-de-integração-com-o-backend)
+5. [Contribuição GitHub](#contribuição-github)
 
 ---
 
-## 2. Conexão API → Front-end
+## Testar Web
 
-**Arquivo base para configuração (exemplo):**
-`/src/api/api.js`
-```javascript
-import axios from "axios";
+Você pode testar o **NeuroMent** diretamente na web, sem precisar baixar nada.
 
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
+### 1. Acesse o frontend
+- Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
+- Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`
 
-export default api;
+> **Importante:** desabilite a tradução automática.  
+> O backend foi migrado para **Django (Python)** e atualmente o deploy está sendo configurado. Em breve o ambiente online será atualizado.
+
+### 2. Cadastro de teste
+- Crie uma conta usando qualquer e-mail e senha.  
+- Após o cadastro, será exibido um **código de confirmação**.  
+- Aguarde alguns segundos para simular a confirmação de e-mail.
+
+### 3. Login
+- Faça login com o e-mail e senha criados.  
+- Seus dados são armazenados com segurança (criptografia e respeito à LGPD).
+
+---
+
+## Baixar e testar localmente
+
+### 1. Acesse o repositório
+
+Clone o projeto:
+
+```bash
+git clone https://github.com/JonatanMariano/neuroment.git
+cd neuroment
+code .
 ````
 
-No ambiente local, use:
+### 2. Requisitos mínimos
 
-```
-REACT_APP_API_URL=http://127.0.0.1:8000/api
-```
+* Node.js ≥ 18
+* npm (vem com Node.js)
+* Git
+* VSCode (recomendado)
+* Backend Django configurado localmente
 
-Endpoints comuns:
-
-* `/auth/login/`
-* `/auth/register/`
-* `/user/profile/`
-* `/plans/`
-* `/plans/{id}/details/`
+Repositório do backend (privado):
+👉 **NeuroMent-Backend**
 
 ---
 
-## 3. Configuração de Variáveis de Ambiente
+### 3. Instalação das dependências
 
-### Back-end (.env)
+Frontend:
 
-```
-DEBUG=True
-SECRET_KEY=seu_secret_key
-DATABASE_URL=postgres://user:senha@localhost:5432/neuroment
-CORS_ALLOWED_ORIGINS=http://localhost:3000
-```
-
-### Front-end (.env)
-
-```
-REACT_APP_API_URL=http://127.0.0.1:8000/api
+```bash
+cd neuroment
+npm install
+npm install styled-components   # se necessário
 ```
 
 ---
 
-## 4. Testes Locais
+### 4. Rodar o backend (Django)
 
-No terminal, execute:
-
-### Back-end:
+No diretório do backend:
 
 ```bash
 python manage.py makemigrations
@@ -82,25 +81,228 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-### Front-end:
+O backend iniciará em:
 
-```bash
-npm install
-npm start
 ```
-
-Verifique a comunicação no console de rede (`F12 → Network`) para garantir que o front esteja recebendo os dados da API corretamente.
+http://127.0.0.1:8000
+```
 
 ---
 
-## 5. Deploy e Integração Contínua
+### 5. Rodar o frontend
 
-A integração pode ser feita via build automático:
+```bash
+npm run dev
+```
 
-* O back-end pode ser hospedado em Render, Railway, ou AWS Free Tier.
-* O front-end pode ser hospedado no Vercel ou Netlify.
+O frontend abrirá em algo como:
 
-Apenas atualize as variáveis de ambiente de cada serviço com a URL de produção do back-end.
+```
+http://localhost:5173
+```
+
+---
+
+## Testar rotas do backend
+
+O backend atual é **Django REST Framework + JWT**.
+
+🔹 **Registro de Usuário (Register)**
+POST
+`http://127.0.0.1:8000/api/auth/register/`
+
+Body (JSON):
+
+```json
+{
+  "username": "usuario_teste",
+  "email": "usuario_teste@example.com",
+  "password": "senha123"
+}
+```
+
+Resposta esperada:
+
+```json
+{
+  "user": {
+    "id": 1,
+    "username": "usuario_teste",
+    "email": "usuario_teste@example.com"
+  },
+  "access": "<ACCESS_TOKEN>",
+  "refresh": "<REFRESH_TOKEN>"
+}
+```
+
+---
+
+🔹 **Login (Auth)**
+POST
+`http://127.0.0.1:8000/api/auth/token/`
+
+Body (JSON):
+
+```json
+{
+  "username": "usuario_teste@example.com",
+  "password": "senha123"
+}
+```
+
+Resposta esperada:
+
+```json
+{
+  "refresh": "<REFRESH_TOKEN>",
+  "access": "<ACCESS_TOKEN>"
+}
+```
+
+---
+
+🔹 **Perfil do Usuário (Profile)**
+GET
+`http://127.0.0.1:8000/api/accounts/profile/`
+
+Header:
+
+```
+Authorization: Bearer <ACCESS_TOKEN>
+```
+
+Resposta esperada:
+
+```json
+{
+  "id": 1,
+  "username": "usuario_teste",
+  "email": "usuario_teste@example.com"
+}
+```
+
+---
+
+## Sugestão de integração com o backend
+
+O front-end que precisa integrar estas rotas está neste repositório:
+👉 [NeuroMent Front-End](https://github.com/JonatanMariano/neuroment)
+
+### Onde e como integrar:
+
+#### Localização dos serviços de API
+
+Crie ou edite a pasta `src/services/` (ou similar) para adicionar as chamadas HTTP.
+
+Use **fetch** ou **axios** para conectar às rotas do Django backend.
+
+#### Exemplo com Axios:
+
+```javascript
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
+
+export const loginUser = async (email, password) => {
+  const response = await api.post("/auth/token/", {
+    username: email,
+    password: password,
+  });
+  return response.data;
+};
+```
+
+#### Tokens de autenticação
+
+Após login, salve os tokens (`access`, `refresh`) em `localStorage` ou no **Context API**.
+
+Envie o token no header das rotas protegidas:
+
+```js
+Authorization: `Bearer ${access_token}`
+```
+
+---
+
+### Configuração de ambiente
+
+No front-end, adicione o backend base URL em `.env`:
+
+```
+VITE_API_URL=http://127.0.0.1:8000/api
+```
+
+---
+
+### Testes
+
+Use o **Thunder Client**, **Postman** ou o próprio front-end para testar os endpoints.
+
+Comece testando **registro e login** antes de implementar telas que dependam do perfil do usuário.
+
+⚠️ Nas próximas horas será feito o deploy do backend e novas rotas serão implementadas para **dados pessoais** e **questionários**.
+
+---
+
+## Contribuição GitHub
+
+### 1. Configuração Git local
+
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+git clone https://github.com/JonatanMariano/neuroment.git
+cd neuroment
+```
+
+### 2. Fluxo de trabalho
+
+Crie uma branch para a tarefa:
+
+```bash
+git checkout -b nome-da-feature
+```
+
+Faça commits claros:
+
+```bash
+git add .
+git commit -m "Descrição do que foi feito"
+```
+
+Envie a branch:
+
+```bash
+git push origin nome-da-feature
+```
+
+### 3. Sincronização com a main
+
+```bash
+git fetch origin
+git rebase origin/main
+# ou
+git merge origin/main
+```
+
+Resolva conflitos se houver:
+
+```bash
+git add .
+git rebase --continue   # se usou rebase
+git push origin nome-da-feature --force
+```
+
+---
+
+### 4. Regras importantes
+
+* Faça commits claros e objetivos.
+* Sempre mantenha o repositório atualizado antes de começar uma nova feature.
+* Use branches separadas para cada funcionalidade.
+* Evite conflitos desnecessários com a branch `main`.
 
 ```
 ```
