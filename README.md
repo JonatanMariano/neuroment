@@ -2,7 +2,7 @@
 
 Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do back-end do NeuroMent usando HTTP requests.
 
-> ⚠️ Observação: O projeto está em evolução. Por enquanto, somente Jonatan e Cauã podem fazer commits. Nas próximas horas será feito um deploy e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados.
+> ⚠️ Observação: O projeto está em evolução. Por enquanto, somente Jonatan e Cauã podem fazer push. Nas próximas horas será feito um deploy e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados.
 
 ---
 
