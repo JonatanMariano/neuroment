@@ -1,208 +1,118 @@
-# NeuroMent
+# NeuroMent - Teste de Rotas de Autenticação (Front-End)
 
-## Instruções para testar localmente ou web
+Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do back-end do NeuroMent usando HTTP requests.
 
-### Sumário
-1. [Testar Web](#testar-web)
-2. [Baixar e testar localmente](#baixar-e-testar-localmente)
-3. [Contribuição GitHub](#contribuição-github)
+> ⚠️ Observação: O projeto está em evolução. Por enquanto, somente Jonathan e Caon (com C maiúsculo) podem fazer commits. Nas próximas horas será feito um deploy e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados.
 
 ---
 
-## Testar Web
+## Sumário
 
-Você pode testar o NeuroMent diretamente na web, sem precisar baixar nada. O front-end está integrado ao backend, então todas as funcionalidades funcionam de verdade.
-
-### 1. Acesse o frontend
-- Link do Vercel: [Clique aqui para abrir o NeuroMent](https://neuroment.vercel.app)  
-- Ou acesse diretamente pelo URL: `https://neuroment.vercel.app`
-
-> **Importante:** desabilite a tradução automática.  
-> O server do Render reinicia as instâncias e, no plano gratuito, pode levar até 50 segundos para responder às requisições.
-
-### 2. Cadastro de teste
-- Crie uma conta usando qualquer e-mail e senha.  
-- Ao concluir o cadastro, será gerado um **código de confirmação** na tela. **Anote esse código.**  
-- Aguarde alguns segundos para que a simulação da confirmação de e-mail seja processada.
-
-### 3. Login
-- É necessário registrar a conta antes de fazer login.  
-- Use o e-mail e a senha cadastrados para acessar o app.
-
-> **Observação:** Seus dados ficam salvos no banco local com a senha criptografada. LGPD respeitada.
-
-### 4. Navegação pelo app
-- Explore todas as funcionalidades. O backend está em [https://neuroment.onrender.com](https://neuroment.onrender.com).  
-- Todos os dados inseridos via app web são armazenados no banco real.
-
-> **Dica:** Tenha paciência durante a confirmação de e-mail; mesmo após inserir o código, pode levar alguns segundos para o acesso completo.  
-> 💡 Se não conseguir logar ou ver mudanças imediatas, recarregue a página ou limpe o cache.
+1. [Registro de Usuário (Register)](#1️⃣-registro-de-usuário-register)  
+2. [Login (Auth)](#2️⃣-login-auth)  
+3. [Perfil do Usuário (Profile)](#3️⃣-perfil-do-usuário-profile)  
+4. [Sugestão de Integração com Front-End](#🔹-sugestão-de-integração-com-front-end)
 
 ---
 
-## Baixar e testar localmente
+## 1️⃣ Registro de Usuário (Register)
 
-### 1. Acesse o repositório
+**POST**  
+`http://127.0.0.1:8000/api/auth/register/`
 
-Clone o projeto do GitHub:
+**Body (JSON)**:
+```json
+{
+  "username": "jonatan_teste2",
+  "email": "jonatan_teste2@example.com",
+  "password": "senha123"
+}
+Resposta esperada (JSON):
 
-```bash
-git clone https://github.com/JonatanMariano/neuroment.git
-cd neuroment
-code .
-2. Requisitos mínimos
-Node.js ≥ 18
-
-npm (vem com Node.js)
-
-Git
-
-VSCode recomendado
-
-Banco PostgreSQL local ou conta Render para o backend
-
-Portas livres (backend padrão: 5000)
-
-3. Instalação das dependências
-Frontend:
-
-bash
+json
 Copiar código
-cd /caminho/para/neuroment
-npm install
-npm install styled-components   # se necessário
-Backend:
+{
+  "user": {
+    "id": 3,
+    "username": "jonatan_teste2",
+    "email": "jonatan_teste2@example.com"
+  },
+  "access": "<ACCESS_TOKEN>",
+  "refresh": "<REFRESH_TOKEN>"
+}
+2️⃣ Login (Auth)
+POST
+http://127.0.0.1:8000/api/auth/token/
 
-bash
+Body (JSON):
+
+json
 Copiar código
-cd neuroment-backend
-npm install
-A pasta do backend está em neuroment-backend.
+{
+  "username": "jonatan_teste2@example.com",  // ou "jonatan_teste2"
+  "password": "senha123"
+}
+Resposta esperada (JSON):
 
-4. Configurar o banco
-Use Postgres local ou Supabase.
-
-Crie o projeto no Supabase ou configure Postgres local.
-
-Forneça credenciais de conexão no arquivo de configuração dentro de neuroment-backend.
-
-Siga os arquivos de configuração do backend.
-
-5. Rodar a aplicação (dois terminais)
-Terminal A (backend):
-
-bash
+json
 Copiar código
-cd /caminho/para/neuroment/neuroment-backend
-node index.js
-O backend iniciará na porta 5000.
+{
+  "refresh": "<REFRESH_TOKEN>",
+  "access": "<ACCESS_TOKEN>"
+}
+3️⃣ Perfil do Usuário (Profile)
+GET
+http://127.0.0.1:8000/api/accounts/profile/
 
-Terminal B (frontend):
+Header (Authorization):
 
-bash
+makefile
 Copiar código
-cd /caminho/para/neuroment
-npm run dev
-O frontend abrirá na porta mostrada pelo Vite (ex: http://localhost:5173).
+Authorization: Bearer <ACCESS_TOKEN>
+Resposta esperada (JSON):
 
-6. Fluxo para testar a aplicação
-Abra o frontend no navegador.
-
-Vá em “Criar conta” e preencha todos os campos obrigatórios.
-
-Envie o formulário; aparecerá um código de confirmação.
-
-Cole o código na tela de confirmação de e-mail.
-
-Volte para a tela de login e faça login com as credenciais criadas.
-
-O registro será persistido no banco.
-
-7. Comandos úteis
-Frontend:
-
-bash
+json
 Copiar código
-cd neuroment
-npm install
-npm install styled-components
-npm run dev
-Backend:
+{
+  "id": 3,
+  "username": "jonatan_teste2",
+  "email": "jonatan_teste2@example.com"
+}
+🔹 Sugestão de Integração com Front-End
+O front-end que precisa integrar estas rotas está no repositório:
+NeuroMent
 
-bash
+Onde e como integrar:
+Chamadas HTTP
+
+No front-end, identifique a pasta onde estão os serviços de API (ex: src/services ou src/api).
+
+Crie funções para chamar cada endpoint: register, auth e profile.
+
+Tokens de autenticação
+
+Salvar os tokens (access e refresh) localmente (ex: localStorage ou state global).
+
+Para rotas protegidas (profile), enviar header:
+
+js
 Copiar código
-cd neuroment-backend
-npm install
-node index.js
-8. Problemas comuns
-Porta ocupada: libere a porta 5000 ou ajuste a configuração do backend.
+Authorization: `Bearer ${access_token}`
+Se o access expirar, usar o refresh para gerar novo token antes de acessar rotas protegidas.
 
-Dependência faltando: rode npm install na pasta correta.
+Configuração das variáveis de ambiente
 
-Frontend não carrega: verifique a URL do terminal (npm run dev).
+Certifique-se que o front-end saiba o base URL do back-end (http://127.0.0.1:8000 ou deploy).
 
-Backend não conecta: confirme Postgres/Supabase e credenciais.
+Guarde qualquer chave secreta ou URL de API em .env (ex: REACT_APP_API_URL).
 
-9. Testes rápidos
-Backend: acesse http://localhost:5000
+Testes
 
-Frontend: acesse a URL do Vite e siga fluxo de cadastro.
+Use o Thunder Client, Postman ou funções internas do front-end para testar os endpoints antes de integrar telas.
 
-10. Dúvidas e problemas
-Abra uma issue no repositório com título curto e passo a passo do erro.
+Comece integrando registro e login, depois profile.
 
-Contribuição GitHub
-1. Configuração Git local
-bash
-Copiar código
-git config --global user.name "Seu Nome"
-git config --global user.email "seu@email.com"
-git clone https://github.com/JonatanMariano/neuroment.git
-cd neuroment
-2. Fluxo de trabalho
-Crie uma branch para a tarefa:
+⚠️ Aviso: Nas próximas horas, o deploy será feito e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados. Fique atento às atualizações para ajustar o front-end.
 
-bash
-Copiar código
-git checkout -b nome-da-feature
-Faça commits claros:
-
-bash
-Copiar código
-git add .
-git commit -m "Descrição do que foi feito"
-Envie a branch:
-
-bash
-Copiar código
-git push origin nome-da-feature
-Abra um Pull Request no GitHub:
-
-Origem: sua branch
-
-Destino: main
-
-Adicione descrição e comentários do que foi feito
-
-A branch main está protegida: não é possível dar push direto.
-
-3. Sincronização com a main
-bash
-Copiar código
-git fetch origin
-git rebase origin/main   # ou git merge origin/main
-Resolva conflitos se houver:
-
-bash
-Copiar código
-git add .
-git rebase --continue   # se usou rebase
-git push origin nome-da-feature --force
-4. Regras importantes
-Sempre use pull requests.
-
-Resolva todas as conversas antes do merge.
-
-Mantenha commits claros e objetivos.
-
-Ninguém deve dar push direto na main.
+Para dúvidas ou problemas de integração, consulte o repositório do back-end:
+NeuroMent-Backend
