@@ -21,6 +21,7 @@ Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do
 `http://127.0.0.1:8000/api/auth/register/`
 
 **Body (JSON)**:
+```json
 {
   "username": "jonatan_teste2",
   "email": "jonatan_teste2@example.com",
@@ -29,6 +30,7 @@ Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do
 Resposta esperada (JSON):
 
 json
+Copiar código
 {
   "user": {
     "id": 3,
@@ -45,6 +47,7 @@ http://127.0.0.1:8000/api/auth/token/
 Body (JSON):
 
 json
+Copiar código
 {
   "username": "jonatan_teste2@example.com",  // ou "jonatan_teste2"
   "password": "senha123"
@@ -52,6 +55,7 @@ json
 Resposta esperada (JSON):
 
 json
+Copiar código
 {
   "refresh": "<REFRESH_TOKEN>",
   "access": "<ACCESS_TOKEN>"
@@ -68,6 +72,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 Resposta esperada (JSON):
 
 json
+Copiar código
 {
   "id": 3,
   "username": "jonatan_teste2",
@@ -91,6 +96,7 @@ Salvar os tokens (access e refresh) localmente (ex: localStorage ou state global
 Para rotas protegidas (profile), enviar header:
 
 js
+Copiar código
 Authorization: `Bearer ${access_token}`
 Se o access expirar, usar o refresh para gerar novo token antes de acessar rotas protegidas.
 
