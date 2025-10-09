@@ -1,120 +1,106 @@
-# NeuroMent - Teste de Rotas de Autenticação (Front-End)
-
-Este guia mostra como testar as rotas de **registro**, **login** e **perfil** do back-end do NeuroMent usando HTTP requests.
-
-> ⚠️ Observação: O projeto está em evolução. Por enquanto, somente Jonatan e Cauã podem fazer push. Nas próximas horas será feito um deploy e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados.
-
----
+````md
+# Integração entre o Back-end (Django REST) e o Front-end (NeuroMent React)
 
 ## Sumário
-
-1. [Registro de Usuário (Register)](#1️⃣-registro-de-usuário-register)  
-2. [Login (Auth)](#2️⃣-login-auth)  
-3. [Perfil do Usuário (Profile)](#3️⃣-perfil-do-usuário-profile)  
-4. [Sugestão de Integração com Front-End](#🔹-sugestão-de-integração-com-front-end)
+1. Estrutura de Integração
+2. Conexão API → Front-end
+3. Configuração de Variáveis de Ambiente
+4. Testes Locais
+5. Deploy e Integração Contínua
 
 ---
 
-## 1️⃣ Registro de Usuário (Register)
+## 1. Estrutura de Integração
+O front-end do NeuroMent (React) está no repositório:
+👉 [https://github.com/JonatanMariano/neuroment](https://github.com/JonatanMariano/neuroment)
 
-**POST**  
-`http://127.0.0.1:8000/api/auth/register/`
+O back-end (Django REST Framework) fornece as rotas de autenticação, cadastro, planos de estudo e personalização do usuário.
 
-ATENÇÂO: username não é o nome da pessoa, é um nome de user.
+- Front-end: React + Axios + Context API
+- Back-end: Django REST + JWT + PostgreSQL
 
-**Body (JSON)**:
-```json
-{
-  "username": "jonatan_teste2",
-  "email": "jonatan_teste2@example.com",
-  "password": "senha123"
-}
-Resposta esperada (JSON):
+---
 
-json
-Copiar código
-{
-  "user": {
-    "id": 3,
-    "username": "jonatan_teste2",
-    "email": "jonatan_teste2@example.com"
-  },
-  "access": "<ACCESS_TOKEN>",
-  "refresh": "<REFRESH_TOKEN>"
-}
-2️⃣ Login (Auth)
-POST
-http://127.0.0.1:8000/api/auth/token/
+## 2. Conexão API → Front-end
 
-Body (JSON):
+**Arquivo base para configuração (exemplo):**
+`/src/api/api.js`
+```javascript
+import axios from "axios";
 
-json
-Copiar código
-{
-  "username": "jonatan_teste2@example.com",  // ou "jonatan_teste2" (pode logar tanto com username, quanto com email)
-  "password": "senha123"
-}
-Resposta esperada (JSON):
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
 
-json
-Copiar código
-{
-  "refresh": "<REFRESH_TOKEN>",
-  "access": "<ACCESS_TOKEN>"
-}
-3️⃣ Perfil do Usuário (Profile)
-GET
-http://127.0.0.1:8000/api/accounts/profile/
+export default api;
+````
 
-Header (Authorization):
+No ambiente local, use:
 
-makefile
-Copiar código
-Authorization: Bearer <ACCESS_TOKEN>
-Resposta esperada (JSON):
+```
+REACT_APP_API_URL=http://127.0.0.1:8000/api
+```
 
-json
-Copiar código
-{
-  "id": 3,
-  "username": "jonatan_teste2",
-  "email": "jonatan_teste2@example.com"
-}
-🔹 Sugestão de Integração com Front-End
-O front-end que precisa integrar estas rotas está no repositório:
-NeuroMent
+Endpoints comuns:
 
-Onde e como integrar:
-Chamadas HTTP
+* `/auth/login/`
+* `/auth/register/`
+* `/user/profile/`
+* `/plans/`
+* `/plans/{id}/details/`
 
-No front-end, identifique a pasta onde estão os serviços de API (ex: src/services ou src/api).
+---
 
-Crie funções para chamar cada endpoint: register, auth e profile.
+## 3. Configuração de Variáveis de Ambiente
 
-Tokens de autenticação
+### Back-end (.env)
 
-Salvar os tokens (access e refresh) localmente (ex: localStorage ou state global).
+```
+DEBUG=True
+SECRET_KEY=seu_secret_key
+DATABASE_URL=postgres://user:senha@localhost:5432/neuroment
+CORS_ALLOWED_ORIGINS=http://localhost:3000
+```
 
-Para rotas protegidas (profile), enviar header:
+### Front-end (.env)
 
-js
-Copiar código
-Authorization: `Bearer ${access_token}`
-Se o access expirar, usar o refresh para gerar novo token antes de acessar rotas protegidas.
+```
+REACT_APP_API_URL=http://127.0.0.1:8000/api
+```
 
-Configuração das variáveis de ambiente
+---
 
-Certifique-se que o front-end saiba o base URL do back-end (http://127.0.0.1:8000 ou deploy).
+## 4. Testes Locais
 
-Guarde qualquer chave secreta ou URL de API em .env (ex: REACT_APP_API_URL).
+No terminal, execute:
 
-Testes
+### Back-end:
 
-Use o Thunder Client, Postman ou funções internas do front-end para testar os endpoints antes de integrar telas.
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
 
-Comece integrando registro e login, depois profile.
+### Front-end:
 
-⚠️ Aviso: Nas próximas horas, o deploy será feito e novas rotas e bancos de dados de usuário, dados pessoais e questionários serão implementados. Fique atento às atualizações para ajustar o front-end.
+```bash
+npm install
+npm start
+```
 
-Para dúvidas ou problemas de integração, consulte o repositório do back-end:
-NeuroMent-Backend
+Verifique a comunicação no console de rede (`F12 → Network`) para garantir que o front esteja recebendo os dados da API corretamente.
+
+---
+
+## 5. Deploy e Integração Contínua
+
+A integração pode ser feita via build automático:
+
+* O back-end pode ser hospedado em Render, Railway, ou AWS Free Tier.
+* O front-end pode ser hospedado no Vercel ou Netlify.
+
+Apenas atualize as variáveis de ambiente de cada serviço com a URL de produção do back-end.
+
+```
+```
