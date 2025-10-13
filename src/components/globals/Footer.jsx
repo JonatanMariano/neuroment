@@ -7,7 +7,7 @@ function Footer({ email = "suporte@neuroment.com.br" }) {
 
   const style = {
     backgroundColor: "#009688",
-    color: "#fff",
+    color: "#000000ff",
     textAlign: "center",
     padding: "12px",
     fontSize: "14px",

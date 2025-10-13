@@ -2,13 +2,9 @@
 import React from "react";
 
 function Background({ theme = "light", variant = "default", children }) {
-  const baseImage =
-    theme === "light"
-      ? "/images/background-light.jpg"
-      : "/images/background-dark.jpg";
+
 
   const style = {
-    backgroundImage: `url(${baseImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 
-import Background from "../components/globals/Background.jsx";
-import Footer from "../components/globals/Footer.jsx";
-import Logo from "../components/globals/Logo.jsx";
-import ThemeSelector from "../components/globals/ThemeSelector.jsx";
+import Background from "../../components/globals/Background.jsx";
+import Footer from "../../components/globals/Footer.jsx";
+import Logo from "../../components/globals/Logo.jsx";
+import ThemeSelector from "../../components/globals/ThemeSelector.jsx";
 
-import InputField from "../components/ui/InputField.jsx";
-import InputFieldPassword from "../components/ui/InputFieldPassword.jsx";
-import Button from "../components/ui/Button.jsx";
-import ButtonGoogle from "../components/globals/ButtonGoogle.jsx";
-import ButtonApple from "../components/globals/ButtonApple.jsx";
+import InputField from "../../components/ui/InputField.jsx";
+import InputFieldPassword from "../../components/ui/InputFieldPassword.jsx";
+import Button from "../../components/ui/Button.jsx";
+import ButtonGoogle from "../../components/globals/ButtonGoogle.jsx";
+import ButtonApple from "../../components/globals/ButtonApple.jsx";
 
-import { API_URL } from "../config";
-import { lightTheme, darkTheme } from "../styles/themes.js";
+import { API_URL } from "../../config.js";
+import { lightTheme, darkTheme } from "../../styles/themes.js";
 
 // Container geral da página
 const PageWrapper = styled.div`

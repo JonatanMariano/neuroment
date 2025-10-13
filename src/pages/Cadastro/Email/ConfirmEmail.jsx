@@ -1,13 +1,13 @@
 // ConfirmEmail.jsx
 import React, { useState } from "react";
-import Background from "../components/globals/Background.jsx";
-import Footer from "../components/globals/Footer.jsx";
-import Button from "../components/ui/Button.jsx";
-import Logo from "../components/globals/Logo.jsx";
+import Background from "../../../components/globals/Background.jsx";
+import Footer from "../../../components/globals/Footer.jsx";
+import Button from "../../../components/ui/Button.jsx";
+import Logo from "../../../components/globals/Logo.jsx";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import colors from "../styles/colors.js";
-import { API_URL } from "../config"; // Importa a URL da API do arquivo de configuração BD
+import colors from "../../../styles/colors.js";
+import { API_URL } from "../../../config.js"; // Importa a URL da API do arquivo de configuração BD
 
 // Container geral
 const PageWrapper = styled.div`
