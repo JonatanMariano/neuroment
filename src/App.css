@@ -1,5 +1,18 @@
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto !important;   /* garante que o scroll vertical funcione */
+  overflow-x: hidden;             /* evita barra horizontal */
+  scroll-behavior: smooth;        /* rolagem suave */
+  background-color: white;        /* evita fundos antigos */
+}
 
+#root {
+  min-height: 100vh;
+  overflow: visible !important;   /* impede travamento de scroll */
+}
 .logo {
   height: 6em;
   padding: 1.5em;
