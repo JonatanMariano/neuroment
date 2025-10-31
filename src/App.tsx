@@ -1,16 +1,14 @@
-import AppRoutes from "./routes/routes";
-import { SpeedInsights } from "@vercel/speed-insights/react";
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { StoreProvider } from "./stores/StoreProvider";
+import AppRoutes from "./routes/Routes";
+import "./styles/globals.css";
 
-function App() {
+export default function App() {
   return (
-    <>
-      {/* Speed Insights para ter retornos sobre velocidade no Vercel */}
-      <SpeedInsights />
-
-      <AppRoutes />
-    </>
+    <BrowserRouter>
+      <StoreProvider>
+        <AppRoutes />
+      </StoreProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
