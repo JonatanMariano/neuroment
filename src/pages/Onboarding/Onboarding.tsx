@@ -10,7 +10,7 @@ export default function Onboarding() {
   const handleComplete = (data: OnboardingData) => {
     complete(data);
     // Redireciona para Questions como primeira experiência após cadastro
-    navigate("/questions?welcome=true");
+    navigate("/dashboard");
   };
 
   return <OnboardingComponent onComplete={handleComplete} />;
