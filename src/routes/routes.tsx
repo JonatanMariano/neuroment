@@ -1,24 +1,30 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from '../pages/login/Login';
-import Quest1 from '../pages/Quest1';
-import Quest2 from '../pages/Quest2';
-import Quest3 from '../pages/Quest3';
-import Quest4 from '../pages/Quest4';
-import Quest5 from '../pages/Quest5';
-import LayoutStart from '../layout/Start/LyoutStart';
+import LandingPage from '../pages/LandingPage/LandingPage';
+import Login from '../pages/Login/Login';
+import SignUp from '../pages/SignUp/SignUp';
+import OnboardingChoice from '../pages/OnboardingChoice/OnboardingChoice';
+import Onboarding from '../pages/Onboarding/Onboarding';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import Questions from '../pages/Questions/Questions';
+import { Chat } from '../pages/Chat/Chat';
+import { ProtectedRoute } from './ProtectedRoute';
+
 export default function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route element={<LayoutStart />}>
-                <Route path="/login" element={<Login />} />
-                <Route path="/quest1" element={<Quest1 />} />
-                <Route path="/quest2" element={<Quest2 />} />
-                <Route path="/quest3" element={<Quest3 />} />
-                <Route path="/quest4" element={<Quest4 />} />   
-                <Route path="/quest5" element={<Quest5 />} />
-            </Route>
-        </Routes>
-    )
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/onboarding-choice" element={<OnboardingChoice />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/chat" element={<Chat />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 }
