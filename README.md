@@ -247,4 +247,6 @@ Sempre mantenha o repositório atualizado antes de começar uma nova feature.
 
 Use branches separadas para cada funcionalidade.
 
+
 Evite conflitos desnecessários com a branch main.
+
